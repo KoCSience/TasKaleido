@@ -7,6 +7,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	kotlin("plugin.allopen") version "1.8.0"
 }
 
 group = "com.example"
@@ -17,6 +18,9 @@ java {
 }
 
 configurations {
+	runtimeClasspath {
+		extendsFrom(developmentOnly.get())
+	}
 	compileOnly {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
@@ -29,6 +33,7 @@ repositories {
 extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencies {
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -63,4 +68,10 @@ tasks.asciidoctor {
 	outputs.dir(project.property("snippetsDir")!!)
 //	dependsOn(test)
 	dependsOn(tasks.test)
+}
+
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.Embeddable")
+	annotation("jakarta.persistence.MappedSuperclass")
 }

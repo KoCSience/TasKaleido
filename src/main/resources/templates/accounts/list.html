@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>アカウント一覧</title>
+</head>
+<body>
+<h2>アカウント一覧</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>メールアドレス</th>
+        <th>プロフィール</th>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <!--        <td th:text="${account.uuid}"></td>-->
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.name}"></td>
+        <td th:text="${account.email}"></td>
+        <td th:text="${account.profile}"></td>
+    </tr>
+</table>
+<a href="/accounts/register">新規作成</a>
+</body>
+</html>

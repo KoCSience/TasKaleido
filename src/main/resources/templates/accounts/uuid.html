@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Page</title>
+</head>
+<body>
+<h1>Your account page</h1>
+<div th:object="${account}">
+    <label>ID</label>
+    <!--    <p th:text="*{uuid}"></p>-->
+    <p th:text="*{id}"></p>
+    <label>Name</label>
+    <p th:text="*{name}"></p>
+    <label>email</label>
+    <p th:text="*{email}"></p>
+    <label>profile</label>
+    <p th:text="*{profile}"></p>
+</div>
+<a href="/accounts">一覧画面へ</a>
+</body>
+</html>
