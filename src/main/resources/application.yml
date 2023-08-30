@@ -14,3 +14,6 @@ spring:
   devtools:
     restart:
       enabled=true:
+  sql:
+    init:
+      data-locations: classpath:data.sql

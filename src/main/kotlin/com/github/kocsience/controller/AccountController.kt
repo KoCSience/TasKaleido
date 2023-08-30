@@ -1,7 +1,7 @@
 package com.github.kocsience.controller
 
-import com.github.kocsience.Service.AccountService
 import com.github.kocsience.domain.Account
+import com.github.kocsience.service.AccountService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
@@ -28,9 +28,9 @@ class AccountController(private val accountService: AccountService) {
     @PostMapping("register")
     fun create(@ModelAttribute account: Account): String {
         accountService.save(account)
-        println("Account: ${account}")
+        println("Account: $account")
         //        return "redirect:accounts/${account.uuid}"
-        return "redirect:${account.id}"
+        return "redirect:${account.uuid}"
     }
 
 //    @GetMapping("{uuid}")
@@ -39,10 +39,9 @@ class AccountController(private val accountService: AccountService) {
 //        return "accounts/uuid"
 //    }
 
-    //    @GetMapping("{uuid}")
-    @GetMapping("{id}")
-    fun show(@PathVariable id: Int, model: Model): String {
-        model.addAttribute("account", accountService.find(id))
+    @GetMapping("{uuid}")
+    fun show(@PathVariable uuid: String, model: Model): String {
+        model.addAttribute("account", accountService.find(uuid))
         return "accounts/uuid"
     }
 }
