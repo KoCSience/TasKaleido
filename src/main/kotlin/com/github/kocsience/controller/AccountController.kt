@@ -23,7 +23,7 @@ class AccountController(private val accountService: AccountService) {
     }
 
     @GetMapping("register")
-    fun register() = "accounts/register"
+    fun register() = "register"
 
     @PostMapping("register")
     fun create(@ModelAttribute account: Account): String {
