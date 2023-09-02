@@ -10,6 +10,6 @@ class Controller {
     @GetMapping("/", "/greeting")
     fun hello(model: Model): String {
         model.addAttribute("message", "HIHIHIHIHIHI");
-        return "hello"
+        return "index"
     }
 }

@@ -9,7 +9,7 @@ import kotlin.jvm.optionals.getOrNull
 class AccountService(private val accountRepository: AccountRepository) {
     fun find(id: String) = accountRepository.findById(id).getOrNull()
 
-    fun findAll() = accountRepository.findAll()
+    fun findAll(): MutableList<Account> = accountRepository.findAll()
 
     fun save(account: Account) = accountRepository.save(account)
 }

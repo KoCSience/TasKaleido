@@ -3,7 +3,6 @@ package com.github.kocsience
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-
 @SpringBootApplication
 class DemoApplication
 
