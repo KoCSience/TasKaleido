@@ -28,7 +28,13 @@ class AccountController(private val accountService: AccountService) {
     }
 
     @GetMapping("", "/", "list.html")
-    fun top(@RequestParam("id") id: Int, model: Model): String {
+    fun top(@RequestParam("id") id: Int?, model: Model): String {
+        TODO("まだ動くかわかりません")
+        return if (id == null) {
+            list(model)
+        } else {
+            show(id, model)
+        }
     }
 
     fun list(model: Model): String {
