@@ -6,22 +6,23 @@ import jakarta.persistence.*
 import java.util.*
 
 /**
- * @property uuid UUID
+ * @property id id
  * @property name 名前
  *
  */
 @Entity
 @Table(name = "accounts")
 data class Account(
-    @Id
-    @GeneratedValue
-    @Column(name = "uuid", columnDefinition = "CHAR(36)")
-    val uuid: String = UUID.randomUUID().toString(),
-    val username: String = uuid,
-//    val uuid: String = "a",
 //    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY) // これをつけると DB で自動採番されるようになる
-//    val id: Int?,
+//    @GeneratedValue
+//    @Column(name = "uuid", columnDefinition = "CHAR(36)")
+//    val uuid: String = UUID.randomUUID().toString(),
+//    @GeneratedValue
+//    val username: String = uuid,
+//    val uuid: String = "a",
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // これをつけると DB で自動採番されるようになる
+    val id: Int?,
     val password: String,
     var name: String,
     var email: String,

@@ -7,7 +7,7 @@ import kotlin.jvm.optionals.getOrNull
 
 @Service
 class AccountService(private val accountRepository: AccountRepository) {
-    fun find(id: String) = accountRepository.findById(id).getOrNull()
+    fun find(id: Int) = accountRepository.findById(id).getOrNull()
 
     fun findAll(): MutableList<Account> = accountRepository.findAll()
 
