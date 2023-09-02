@@ -15,6 +15,15 @@ class AccountController(private val accountService: AccountService) {
 //    accounts/login/: POST login
 //    accounts/UUID/: GET show, DELETE delete
 //    accounts/UUID/edit/: PUT update, GET showEdit?
+    @GetMapping("/css/{path}")
+    fun cssPath(@PathVariable path: String) : String {
+        return "/css/${path}"
+    }
+
+    @GetMapping("/js/{path}")
+    fun jsPath(@PathVariable path: String) : String {
+        return "/js/${path}"
+    }
 
     @GetMapping
     fun list(model: Model): String {
@@ -27,10 +36,10 @@ class AccountController(private val accountService: AccountService) {
 
     @PostMapping("register")
     fun create(@ModelAttribute account: Account): String {
-        accountService.save(account)
         println("Account: $account")
+        accountService.save(account)
         //        return "redirect:accounts/${account.uuid}"
-        return "redirect:${account.uuid}"
+        return "redirect:${account.id}"
     }
 
 //    @GetMapping("{uuid}")
@@ -39,9 +48,9 @@ class AccountController(private val accountService: AccountService) {
 //        return "accounts/uuid"
 //    }
 
-    @GetMapping("{uuid}")
-    fun show(@PathVariable uuid: String, model: Model): String {
-        model.addAttribute("account", accountService.find(uuid))
-        return "accounts/uuid"
+    @GetMapping("{id}")
+    fun show(@PathVariable id: Int, model: Model): String {
+        model.addAttribute("account", accountService.find(id))
+        return "subordinate"
     }
 }

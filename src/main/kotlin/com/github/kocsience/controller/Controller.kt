@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
 class Controller {
-    @GetMapping("/", "/greeting")
+    @GetMapping("/", "/index.html", "index")
     fun hello(model: Model): String {
         model.addAttribute("message", "HIHIHIHIHIHI")
         return "index"
