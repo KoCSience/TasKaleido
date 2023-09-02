@@ -17,6 +17,7 @@ data class Account(
     @GeneratedValue
     @Column(name = "uuid", columnDefinition = "CHAR(36)")
     val uuid: String = UUID.randomUUID().toString(),
+    @GeneratedValue
     val username: String = uuid,
 //    val uuid: String = "a",
 //    @Id
