@@ -15,42 +15,50 @@ class AccountController(private val accountService: AccountService) {
 //    accounts/login/: POST login
 //    accounts/UUID/: GET show, DELETE delete
 //    accounts/UUID/edit/: PUT update, GET showEdit?
-    @GetMapping("/css/{path}")
-    fun cssPath(@PathVariable path: String) : String {
-        return "/css/${path}"
+
+    // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
+    @GetMapping("/css/{file}.{ext}")
+    fun cssPath(@PathVariable file: String, @PathVariable ext: String) : String {
+        return "/css/${file}.${ext}"
     }
 
-    @GetMapping("/js/{path}")
-    fun jsPath(@PathVariable path: String) : String {
-        return "/js/${path}"
+    @GetMapping("/js/{file}.{ext}")
+    fun jsPath(@PathVariable file: String, @PathVariable ext: String) : String {
+        return "/js/${file}.${ext}"
     }
 
-    @GetMapping
+    @GetMapping("", "/", "list.html")
+    fun top(@RequestParam("id") id: Int, model: Model): String {
+    }
+
     fun list(model: Model): String {
         model.addAttribute("accounts", accountService.findAll())
         return "accounts/list"
     }
 
-    @GetMapping("register")
-    fun register() = "register"
+    @GetMapping
+    fun show(@RequestParam("id") id: Int, model: Model): String {
+        model.addAttribute("account", accountService.find(id))
+        return "subordinate"
+        // TODO: 変えるかも？要相談
+    }
 
-    @PostMapping("register")
+
+    @GetMapping("register", "register.html")
+    fun register() = "accounts/register"
+
+    @PostMapping("register", "register.html")
     fun create(@ModelAttribute account: Account): String {
         println("Account: $account")
         accountService.save(account)
+        println("Account: $account")
         //        return "redirect:accounts/${account.uuid}"
         return "redirect:${account.id}"
     }
-
 //    @GetMapping("{uuid}")
 //    fun show(@PathVariable uuid: String, model: Model): String {
 //        model.addAttribute("account", accountService.find(uuid))
 //        return "accounts/uuid"
 //    }
 
-    @GetMapping("{id}")
-    fun show(@PathVariable id: Int, model: Model): String {
-        model.addAttribute("account", accountService.find(id))
-        return "subordinate"
-    }
 }
