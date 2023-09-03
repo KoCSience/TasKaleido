@@ -18,35 +18,35 @@ class AccountController(private val accountService: AccountService) {
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
     @GetMapping("/css/{file}.{ext}")
-    fun cssPath(@PathVariable file: String, @PathVariable ext: String) : String {
+    fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
         return "/css/${file}.${ext}"
     }
 
     @GetMapping("/js/{file}.{ext}")
-    fun jsPath(@PathVariable file: String, @PathVariable ext: String) : String {
+    fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
         return "/js/${file}.${ext}"
     }
 
     @GetMapping("", "/", "list.html")
-    fun top(@RequestParam("id") id: Int?, model: Model): String {
-        TODO("まだ動くかわかりません")
+    fun top(@RequestParam("id", required = false) id: Int?, model: Model): String {
         return if (id == null) {
             list(model)
         } else {
-            show(id, model)
+            showSubordinate(id, model)
         }
     }
 
+    @GetMapping("list.html")
     fun list(model: Model): String {
+        // いずれなくなるかも？
         model.addAttribute("accounts", accountService.findAll())
         return "accounts/list"
     }
 
-    @GetMapping
-    fun show(@RequestParam("id") id: Int, model: Model): String {
-        model.addAttribute("account", accountService.find(id))
-        return "subordinate"
-        // TODO: 変えるかも？要相談
+    @GetMapping("subordinate.html")
+    fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
+        if (id != null) model.addAttribute("account", accountService.find(id))
+        return "accounts/subordinate"
     }
 
 
