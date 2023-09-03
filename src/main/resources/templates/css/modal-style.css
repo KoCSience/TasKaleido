@@ -1,0 +1,31 @@
+.modal-title {
+    color: red; 
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* モーダルボディのテキストスタイル */
+.modal-body p {
+    color: blue; /* この色は例です。必要に応じて変更してください */
+    font-size: 24px;
+}
+
+/* 特定のテキストのみをターゲットにする場合 */
+.modal-body .mb-0:first-child {
+    font-weight: bold;
+}
+
+/* フッターのボタンのスタイル */
+.modal-footer .btn-secondary {
+    background-color: orange; /* この色は例です。必要に応じて変更してください */
+}
+
+
+.custom-align .left {
+    /* 左の要素は変更なしで、デフォルトの左に配置 */
+}
+
+.custom-align .center {
+    margin-left: auto; /* 左側のスペースを自動で最大にし、残りの要素を右に押し出します */
+    margin-right: auto; /* 右側のスペースも自動で最大にして、要素を中央に保持します */
+}
