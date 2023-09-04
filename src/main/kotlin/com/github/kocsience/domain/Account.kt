@@ -1,9 +1,8 @@
 package com.github.kocsience.domain
 
-import com.github.kocsience.Task
 import jakarta.persistence.*
+
 //import org.springframework.data.annotation.*
-import java.util.*
 
 /**
  * @property id id
@@ -22,17 +21,14 @@ data class Account(
 //    val uuid: String = "a",
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // これをつけると DB で自動採番されるようになる
+    @Column(name = "account_id")
     val id: Int?,
     val password: String,
     var name: String,
     var email: String,
-    var profile: String
+    var profile: String,
     // 誕生日
     // 入社年月日
-) {
-    @ElementCollection
+    @OneToMany(mappedBy = "account", cascade = [CascadeType.ALL])
     val tasks: MutableList<Task> = mutableListOf()
-
-    @ElementCollection
-    val skills: MutableList<String> = mutableListOf()
-}
+)
