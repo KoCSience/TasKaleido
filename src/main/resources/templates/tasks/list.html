@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 一覧</title>
+</head>
+<body>
+<h2>Task 一覧</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>内容</th>
+        <th>期限</th>
+        <th>account name</th>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.contents}"></td>
+        <td th:text="${task.deadline}"></td>
+        <td th:text="${task.account.name}"></td>
+    </tr>
+</table>
+<a href="register.html">新規作成</a>
+</body>
+</html>

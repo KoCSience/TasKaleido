@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:object="${task}">
+    <label>ID</label>
+    <!--    <p th:text="*{uuid}"></p>-->
+    <p th:text="*{task.id}"></p>
+    <label>title</label>
+    <p th:text="*{task.title}"></p>
+    <label>contents</label>
+    <p th:text="*{task.contents}"></p>
+    <label>deadline</label>
+    <p th:text="*{task.deadline}"></p>
+    <label>account name</label>
+    <p th:text="*{task.account.name}"></p>
+</div>
+</body>
+</html>
