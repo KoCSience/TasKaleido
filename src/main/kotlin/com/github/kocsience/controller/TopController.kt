@@ -1,14 +1,16 @@
 package com.github.kocsience.controller
 
 import com.github.kocsience.domain.Account
+import com.github.kocsience.domain.Task
 import com.github.kocsience.service.AccountService
+import com.github.kocsience.service.TaskService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
-class TopController(private val accountService: AccountService) {
+class TopController(private val accountService: AccountService, private val taskService: TaskService) {
     @GetMapping("/index.html")
     fun hello(model: Model): String {
         model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
@@ -50,6 +52,11 @@ class TopController(private val accountService: AccountService) {
         val accountB = Account(2, "b", "b", "b@b", "b")
         accountService.save(accountB)
         println("Account: $accountA, $accountB")
+        val taskA = Task(1, "a", "a", "2000/01/01", accountA)
+        taskService.save(taskA)
+        val taskB = Task(2, "b", "b", "2023/11/11", accountB)
+        taskService.save(taskB)
+        println("Task: $taskA, $taskB")
         return "index"
     }
 }

@@ -11,5 +11,5 @@ class TaskService(private val taskRepository: TaskRepository) {
 
     fun findAll(): MutableList<Task> = taskRepository.findAll()
 
-    fun save(account: Task) = taskRepository.save(account)
+    fun save(task: Task) = taskRepository.save(task)
 }
