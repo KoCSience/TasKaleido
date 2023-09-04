@@ -1,5 +1,6 @@
 package com.github.kocsience.controller
 
+import com.github.kocsience.domain.Account
 import com.github.kocsience.service.AccountService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -37,5 +38,18 @@ class TopController(private val accountService: AccountService) {
         // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
         return "accounts/subordinate"
+    }
+
+    @GetMapping("demo")
+    fun demo(): String {
+        // ↓ 動かなかった
+//        val accountS = Account(0, "super", "super", "super@super", "super user")
+//        accountService.save(accountS)
+        val accountA = Account(1, "a", "a", "a@a", "a")
+        accountService.save(accountA)
+        val accountB = Account(2, "b", "b", "b@b", "b")
+        accountService.save(accountB)
+        println("Account: $accountA, $accountB")
+        return "index"
     }
 }

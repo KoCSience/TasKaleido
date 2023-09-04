@@ -39,7 +39,7 @@ class AccountController(private val accountService: AccountService) {
     @GetMapping("list.html")
     fun list(model: Model): String {
         // いずれなくなるかも？
-//        model.addAttribute("accounts", accountService.findAll())
+        model.addAttribute("accounts", accountService.findAll())
         return "accounts/list"
     }
 
