@@ -1,37 +1,41 @@
 package com.github.kocsience.controller
 
+import com.github.kocsience.service.AccountService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
-class TopController {
-    @GetMapping("/", "/index.html")
+class TopController(private val accountService: AccountService) {
+    @GetMapping("/index.html")
     fun hello(model: Model): String {
-        model.addAttribute("message", "hi!")
-        return "top"
+        model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
+        return "index"
     }
 
-    @GetMapping("logout")
-    fun showLogout(): String {
-        return "logout"
+    // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
+    @GetMapping("/css/{file}.{ext}")
+    fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
+        return "/css/$file.$ext"
     }
 
-    @PostMapping("logout")
-    fun logout(): String {
-        // TODO
-        return "top"
+    @GetMapping("/js/{file}.{ext}")
+    fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
+        return "/js/$file.$ext"
     }
 
-    @GetMapping("/login")
-    fun showLogin(): String {
-        return "login"
+    @GetMapping("management.html")
+    fun showManagement(model: Model): String {
+        // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
+        model.addAttribute("accounts", accountService.findAll())
+        return "management"
     }
 
-    @PostMapping("/login")
-    fun login(): String {
-        // TODO
-        return "top"
+    @GetMapping("subordinate.html")
+    fun showSubordinate(model: Model): String {
+        // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
+        model.addAttribute("accounts", accountService.findAll())
+        return "accounts/subordinate"
     }
 }
