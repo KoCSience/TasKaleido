@@ -19,27 +19,27 @@ class AccountController(private val accountService: AccountService) {
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
     @GetMapping("/css/{file}.{ext}")
     fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/css/${file}.${ext}"
+        return "/css/$file.$ext"
     }
 
     @GetMapping("/js/{file}.{ext}")
     fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/js/${file}.${ext}"
+        return "/js/$file.$ext"
     }
 
-    @GetMapping("", "/", "list.html")
-    fun top(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        return if (id == null) {
-            list(model)
-        } else {
-            showSubordinate(id, model)
-        }
-    }
+//    @GetMapping("", "/", "list.html")
+//    fun top(@RequestParam("id", required = false) id: Int?, model: Model): String {
+//        return if (id == null) {
+//            list(model)
+//        } else {
+//            showSubordinate(id, model)
+//        }
+//    }
 
     @GetMapping("list.html")
     fun list(model: Model): String {
         // いずれなくなるかも？
-        model.addAttribute("accounts", accountService.findAll())
+//        model.addAttribute("accounts", accountService.findAll())
         return "accounts/list"
     }
 
@@ -50,16 +50,16 @@ class AccountController(private val accountService: AccountService) {
     }
 
 
-    @GetMapping("register", "register.html")
+    @GetMapping("register.html")
     fun register() = "accounts/register"
 
-    @PostMapping("register", "register.html")
+    @PostMapping("register.html")
     fun create(@ModelAttribute account: Account): String {
         println("Account: $account")
         accountService.save(account)
         println("Account: $account")
         //        return "redirect:accounts/${account.uuid}"
-        return "redirect:${account.id}"
+        return "redirect:subordinate.html?id=${account.id}"
     }
 //    @GetMapping("{uuid}")
 //    fun show(@PathVariable uuid: String, model: Model): String {
