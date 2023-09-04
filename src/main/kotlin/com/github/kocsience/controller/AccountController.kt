@@ -27,6 +27,9 @@ class AccountController(private val accountService: AccountService) {
         return "/js/$file.$ext"
     }
 
+
+
+
 //    @GetMapping("", "/", "list.html")
 //    fun top(@RequestParam("id", required = false) id: Int?, model: Model): String {
 //        return if (id == null) {
