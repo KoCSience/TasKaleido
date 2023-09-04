@@ -27,18 +27,6 @@ class AccountController(private val accountService: AccountService) {
         return "/js/$file.$ext"
     }
 
-
-
-
-//    @GetMapping("", "/", "list.html")
-//    fun top(@RequestParam("id", required = false) id: Int?, model: Model): String {
-//        return if (id == null) {
-//            list(model)
-//        } else {
-//            showSubordinate(id, model)
-//        }
-//    }
-
     @GetMapping("list.html")
     fun list(model: Model): String {
         // いずれなくなるかも？
@@ -48,7 +36,11 @@ class AccountController(private val accountService: AccountService) {
 
     @GetMapping("subordinate.html")
     fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        if (id != null) model.addAttribute("account", accountService.find(id))
+        model.addAttribute(
+            "account",
+            if (id != null) accountService.find(id)
+            else accountService.vanillaAccount()
+        )
         return "accounts/subordinate"
     }
 
