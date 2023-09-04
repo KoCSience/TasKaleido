@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,15 +8,15 @@
 <div th:object="${task}">
     <label>ID</label>
     <!--    <p th:text="*{uuid}"></p>-->
-    <p th:text="*{task.id}"></p>
+    <p th:text="*{id}"></p>
     <label>title</label>
-    <p th:text="*{task.title}"></p>
+    <p th:text="*{title}"></p>
     <label>contents</label>
-    <p th:text="*{task.contents}"></p>
+    <p th:text="*{contents}"></p>
     <label>deadline</label>
-    <p th:text="*{task.deadline}"></p>
-    <label>account name</label>
-    <p th:text="*{task.account.name}"></p>
+    <p th:text="*{deadline}"></p>
+    <!--        <label>account name</label>-->
+    <!--    <p th:text="*{task.account.name}"></p>-->
 </div>
 </body>
 </html>
