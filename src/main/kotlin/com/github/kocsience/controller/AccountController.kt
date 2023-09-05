@@ -53,6 +53,28 @@ class AccountController(private val accountService: AccountService, private val 
         return "accounts/subordinate"
     }
 
+    @PostMapping("subordinate.html")
+    fun refBusynessStatus(
+        @RequestParam("id", required = false) id: Int?,
+        @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
+        model: Model
+    ): String {
+        if (busynessStatus != null) {
+            println("busynessStatus: $busynessStatus")
+        }
+
+        model.addAttribute(
+            "account",
+            if (id != null) {
+                accountService.find(id)
+            } else {
+                accountService.vanillaAccount()
+            }
+        )
+
+        model.addAttribute("task", taskService.vanillaTask())
+        return "accounts/subordinate"
+    }
 
     @GetMapping("register.html")
     fun register() = "accounts/register"
@@ -65,27 +87,6 @@ class AccountController(private val accountService: AccountService, private val 
         return "redirect:subordinate.html?id=${account.id}"
     }
 
-
-    @PostMapping("subordinate.html")
-    fun refBusynessStatus(
-        @RequestParam("id", required = false) id: Int?,
-        @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
-        model: Model
-    ): String {
-        if (busynessStatus != null) {
-            // TODO
-        }
-
-        model.addAttribute(
-            "account",
-            if (id != null) {
-                accountService.find(id)
-            } else {
-                accountService.vanillaAccount()
-            }
-        )
-        return "accounts/subordinate"
-    }
 
     @GetMapping("login.html")
     fun showLogin() = "accounts/login"
