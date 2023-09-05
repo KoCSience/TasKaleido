@@ -1,6 +1,8 @@
 package com.github.kocsience.domain
 
 import jakarta.persistence.*
+import org.springframework.stereotype.Component
+import org.springframework.web.context.annotation.SessionScope
 
 //import org.springframework.data.annotation.*
 
@@ -11,6 +13,8 @@ import jakarta.persistence.*
  */
 @Entity
 @Table(name = "accounts")
+@SessionScope
+@Component
 data class Account(
 //    @Id
 //    @GeneratedValue

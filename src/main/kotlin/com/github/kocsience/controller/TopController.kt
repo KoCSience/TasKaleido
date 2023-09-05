@@ -4,6 +4,7 @@ import com.github.kocsience.domain.Account
 import com.github.kocsience.domain.Task
 import com.github.kocsience.service.AccountService
 import com.github.kocsience.service.TaskService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
 class TopController(private val accountService: AccountService, private val taskService: TaskService) {
+    @Autowired
+    lateinit var account: Account
+
     @GetMapping("/index.html")
     fun hello(model: Model): String {
         model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
