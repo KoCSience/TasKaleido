@@ -1,6 +1,5 @@
 package com.github.kocsience.controller
 
-import com.github.kocsience.domain.Account
 import com.github.kocsience.domain.Task
 import com.github.kocsience.service.AccountService
 import com.github.kocsience.service.TaskService
@@ -13,7 +12,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/tasks", "/tasks/")
 class TaskController(private val accountService: AccountService, private val taskService: TaskService) {
     @Autowired
-    lateinit var account: Account
+    lateinit var session: SessionHolder
+
     //    エンドポイント:
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file

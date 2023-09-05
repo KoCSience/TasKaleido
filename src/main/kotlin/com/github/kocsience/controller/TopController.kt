@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable
 @Controller
 class TopController(private val accountService: AccountService, private val taskService: TaskService) {
     @Autowired
-    lateinit var account: Account
+    lateinit var session: SessionHolder
+
 
     @GetMapping("/index.html")
     fun hello(model: Model): String {

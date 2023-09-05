@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/accounts", "/accounts/")
 class AccountController(private val accountService: AccountService) {
     @Autowired
-    lateinit var account: Account
-//    エンドポイント:
+    lateinit var session: SessionHolder
+
+    //    エンドポイント:
 //    accounts: GET list
 //    accounts/register/: POST createAccount
 //    accounts/login/: POST login
@@ -39,18 +40,25 @@ class AccountController(private val accountService: AccountService) {
 
     @GetMapping("subordinate.html")
     fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        val account = if (id != null) {
-            println("id=$id")
-            accountService.find(id) ?: accountService.vanillaAccount() // 見つからなかったらvanilla
-        } else if (::account.isInitialized) {
+        val account = if (session.account != null) {
             println("found account session:")
-            println("$account")
-            account
-        } else {
-            println("no id param & not login yet")
-            // no id param & not login yet
-            return "accounts/login"
-        }
+            println(session.account!!.name)
+            // この段階だとaccount.tasksが初期化できていないっぽい？
+            session.account
+        } else accountService.vanillaAccount()
+
+        //        val account = if (id != null) {
+//            println("id=$id")
+//            accountService.find(id) ?: accountService.vanillaAccount() // 見つからなかったらvanilla
+//        } else if (::account.isInitialized) {
+//            println("found account session:")
+//            println(account.toString())
+//            account
+//        } else {
+//            println("no id param & not login yet")
+//            // no id param & not login yet
+//            return "accounts/login"
+//        }
 
         model.addAttribute("account", account)
         return "accounts/subordinate"
@@ -80,7 +88,7 @@ class AccountController(private val accountService: AccountService) {
         }
         if (account.password == loginForm.password) {
             println("login successful")
-            this.account = account
+            session.account = account
             return "redirect:subordinate.html?id=${account.id}"
         }
         println("wrong password")
