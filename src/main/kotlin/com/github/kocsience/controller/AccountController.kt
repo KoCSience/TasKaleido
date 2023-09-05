@@ -15,9 +15,9 @@ class AccountController(private val accountService: AccountService, private val 
     lateinit var session: SessionHolder
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
+    // https://www.baeldung.com/spring-mvc-pathvariable-dot
     @GetMapping("/css/{path:.+}")
     fun cssPaths(@PathVariable path: String): String {
-        println(path)
         return "/css/$path"
     }
 
@@ -46,7 +46,7 @@ class AccountController(private val accountService: AccountService, private val 
         } else {
             println("no id param & not login yet")
             // no id param & not login yet
-            return "accounts/login"
+            return "redirect:/accounts/login.html"
         }
 
         model.addAttribute("account", account)

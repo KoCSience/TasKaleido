@@ -15,9 +15,9 @@ class TaskController(private val accountService: AccountService, private val tas
     lateinit var session: SessionHolder
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
+    // https://www.baeldung.com/spring-mvc-pathvariable-dot
     @GetMapping("/css/{path:.+}")
     fun cssPaths(@PathVariable path: String): String {
-        println(path)
         return "/css/$path"
     }
 

@@ -15,21 +15,22 @@ class TopController(private val accountService: AccountService, private val task
     @Autowired
     lateinit var session: SessionHolder
 
+    // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
+    // https://www.baeldung.com/spring-mvc-pathvariable-dot
+    @GetMapping("/css/{path:.+}")
+    fun cssPaths(@PathVariable path: String): String {
+        return "/css/$path"
+    }
+
+    @GetMapping("/js/{path:.+}")
+    fun jsPaths(@PathVariable path: String): String {
+        return "/js/$path"
+    }
+
     @GetMapping("/index.html")
     fun hello(model: Model): String {
         model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
         return "index"
-    }
-
-    // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
-    @GetMapping("/css/{file}.{ext}")
-    fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/css/$file.$ext"
-    }
-
-    @GetMapping("/js/{file}.{ext}")
-    fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/js/$file.$ext"
     }
 
     @GetMapping("management.html")
