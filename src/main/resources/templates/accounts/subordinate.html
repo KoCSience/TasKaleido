@@ -42,10 +42,10 @@
     <link href="../css/examples.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
     <!-- busynessStatus-->
-    <script type="text/javascript" src="../js/busynessStatus.js"></script>
+    <script src="../js/busynessStatus.js" type="text/javascript"></script>
 
 
 </head>
@@ -252,7 +252,7 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-6">
-                                <div class="border-start border-start-4 border-start-primary px-3 mb-3" id="color" >
+                                <div class="border-start border-start-4 border-start-primary px-3 mb-3" id="color">
                                     <small class="text-medium-emphasis">User info</small>
                                     <div class="fs-5 fw-semibold">User Name</div>
                                 </div>
@@ -262,33 +262,42 @@
 
                     </div>
                     <!-- Form for the primary button -->
-                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=0}" method="post">
-                        <input type="hidden" name="buttonType" value="primary" />
-                        <button class="btn btn-primary rounded-pill" type="submit" onclick="primaryButtonClick();">Excellent</button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=0}">
+                        <input name="buttonType" type="hidden" value="primary"/>
+                        <button class="btn btn-primary rounded-pill" onclick="primaryButtonClick();" type="submit">
+                            Excellent
+                        </button>
                     </form>
 
                     <!-- Form for the info button -->
-                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=1}" method="post">
-                        <input type="hidden" name="buttonType" value="info" />
-                        <button class="btn btn-info rounded-pill" type="submit" onclick="infoButtonClick();">Good</button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=1}">
+                        <input name="buttonType" type="hidden" value="info"/>
+                        <button class="btn btn-info rounded-pill" onclick="infoButtonClick();" type="submit">Good
+                        </button>
                     </form>
 
                     <!-- Form for the success button -->
-                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=2}" method="post">
-                        <input type="hidden" name="buttonType" value="success" />
-                        <button class="btn btn-success rounded-pill" type="submit" onclick="successButtonClick();">Fair</button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=2}">
+                        <input name="buttonType" type="hidden" value="success"/>
+                        <button class="btn btn-success rounded-pill" onclick="successButtonClick();" type="submit">
+                            Fair
+                        </button>
                     </form>
 
                     <!-- Form for the warning button -->
-                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=3}" method="post">
-                        <input type="hidden" name="buttonType" value="warning" />
-                        <button class="btn btn-warning rounded-pill" type="submit" onclick="warningButtonClick();">Poor</button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=3}">
+                        <input name="buttonType" type="hidden" value="warning"/>
+                        <button class="btn btn-warning rounded-pill" onclick="warningButtonClick();" type="submit">
+                            Poor
+                        </button>
                     </form>
 
                     <!-- Form for the danger button -->
-                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}" method="post">
-                        <input type="hidden" name="buttonType" value="danger" />
-                        <button class="btn btn-danger rounded-pill" type="submit" onclick="dangerButtonClick();">Unacceptable</button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}">
+                        <input name="buttonType" type="hidden" value="danger"/>
+                        <button class="btn btn-danger rounded-pill" onclick="dangerButtonClick();" type="submit">
+                            Unacceptable
+                        </button>
                     </form>
 
                 </div>
@@ -353,7 +362,7 @@
         </div>
     </div>
 
-    <!-- task Modal -->
+    <!-- task Modal show -->
     <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content" th:object="${task}">
@@ -364,15 +373,15 @@
                 <div class="modal-body">
                     <div class="d-flex custom-align">
                         <p class="left">title</p>
-                        <p class="center" th:text="*{task.title}"></p>
+                        <p class="center" th:text="*{title}"></p>
                     </div>
                     <div class="d-flex custom-align">
                         <p class="left">deadline</p>
-                        <p class="center" th:text="*{task.deadline}"></p>
+                        <p class="center" th:text="*{deadline}"></p>
                     </div>
                     <div class="d-flex custom-align">
                         <p class="left">status</p>
-                        <p class="center" th:text="*{task.content}"></p>
+                        <p class="center" th:text="*{contents}"></p>
                     </div>
                 </div>
                 <div class="modal-footer">

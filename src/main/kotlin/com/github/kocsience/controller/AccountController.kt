@@ -2,6 +2,7 @@ package com.github.kocsience.controller
 
 import com.github.kocsience.domain.Account
 import com.github.kocsience.service.AccountService
+import com.github.kocsience.service.TaskService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/accounts", "/accounts/")
-class AccountController(private val accountService: AccountService) {
+class AccountController(private val accountService: AccountService, private val taskService: TaskService) {
     @Autowired
     lateinit var session: SessionHolder
 
@@ -48,6 +49,7 @@ class AccountController(private val accountService: AccountService) {
         }
 
         model.addAttribute("account", account)
+        model.addAttribute("task", taskService.vanillaTask())
         return "accounts/subordinate"
     }
 
