@@ -32,6 +32,7 @@ class TopController(private val accountService: AccountService, private val task
     fun showManagement(model: Model): String {
         // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
+        model.addAttribute("task", taskService.vanillaTask(accountService.vanillaAccount()))
         return "management"
     }
 

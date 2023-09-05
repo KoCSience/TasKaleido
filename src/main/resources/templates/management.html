@@ -326,21 +326,21 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="taskModalLabel" th: text = "${Task.title}"></h5>
+								<h5 class="modal-title" id="taskModalLabel" th:text = "${task.title}"></h5>
 								<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
 							</div>
 							<div class="modal-body">
 								<div class="d-flex custom-align">
 									<p class="left">worker</p>
-									<p class="center">タスクに取り組んでいる人</p>
+									<p class="center" th:text = "${task.account.name}"></p>
 								</div>
 								<div class="d-flex custom-align">
 									<p class="left">タスクの内容</p>
-									<p class="center" th: text = "${Task.contents}"></p>
+									<p class="center" th:text = "${task.contents}"></p>
 								</div>
 								<div class="d-flex custom-align">
 									<p class="left">deadline</p>
-									<p class="center" th: text = "${Task.deadline} ></p>
+									<p class="center" th:text = "${task.deadline}"></p>
 								</div>
 								<div class="d-flex custom-align">
 									<p class="left">status</p>
@@ -356,7 +356,7 @@
 				</div>
 				<!-- end task Modal -->
               <div class="c-chart-wrapper" style="height:30px;margin-top:40px;">
-                <canvas class="chart" id="main-chart" height="30"></canvas>
+                <canvas class="chart" id="main-chart1" height="30"></canvas>
               </div>
             </div>
             <div class="card-footer">
