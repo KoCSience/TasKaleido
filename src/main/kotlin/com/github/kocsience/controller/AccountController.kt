@@ -39,11 +39,20 @@ class AccountController(private val accountService: AccountService) {
 
     @GetMapping("subordinate.html")
     fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        model.addAttribute(
-            "account",
-            if (id != null) accountService.find(id)
-            else accountService.vanillaAccount()
-        )
+        val account = if (id != null) {
+            println("id=$id")
+            accountService.find(id) ?: accountService.vanillaAccount() // 見つからなかったらvanilla
+        } else if (::account.isInitialized) {
+            println("found account session:")
+            println("$account")
+            account
+        } else {
+            println("no id param & not login yet")
+            // no id param & not login yet
+            return "accounts/login"
+        }
+
+        model.addAttribute("account", account)
         return "accounts/subordinate"
     }
 
