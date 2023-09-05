@@ -27,6 +27,7 @@ data class Account(
     var name: String,
     var email: String,
     var profile: String,
+    var busynessStatus: Int?,
     // 誕生日
     // 入社年月日
     @OneToMany(mappedBy = "account", cascade = [CascadeType.ALL])

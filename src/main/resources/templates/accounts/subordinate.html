@@ -42,9 +42,10 @@
     <link href="../css/examples.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="templates/css/bootstrap.css">
-    <script type="text/javascript" src="templates/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="templates/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <!-- busynessStatus-->
+    <script type="text/javascript" src="../js/busynessStatus.js"></script>
 
 
 </head>
@@ -251,8 +252,8 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-6">
-                                <div class="border-start border-start-4 border-start-info px-3 mb-3"><small
-                                        class="text-medium-emphasis">User info</small>
+                                <div class="border-start border-start-4 border-start-primary px-3 mb-3" id="color" >
+                                    <small class="text-medium-emphasis">User info</small>
                                     <div class="fs-5 fw-semibold">User Name</div>
                                 </div>
                             </div>
@@ -260,11 +261,35 @@
                         <hr class="mt-0">
 
                     </div>
-                    <button class="btn btn-primary rounded-pill" type="button">Icon</button>
-                    <button class="btn btn-info rounded-pill" type="button">Icon</button>
-                    <button class="btn btn-success rounded-pill" type="button">Icon</button>
-                    <button class="btn btn-warning rounded-pill" type="button">Icon</button>
-                    <button class="btn btn-danger rounded-pill" type="button">Icon</button>
+                    <!-- Form for the primary button -->
+                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=0}" method="post">
+                        <input type="hidden" name="buttonType" value="primary" />
+                        <button class="btn btn-primary rounded-pill" type="submit" onclick="primaryButtonClick();">Excellent</button>
+                    </form>
+
+                    <!-- Form for the info button -->
+                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=1}" method="post">
+                        <input type="hidden" name="buttonType" value="info" />
+                        <button class="btn btn-info rounded-pill" type="submit" onclick="infoButtonClick();">Good</button>
+                    </form>
+
+                    <!-- Form for the success button -->
+                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=2}" method="post">
+                        <input type="hidden" name="buttonType" value="success" />
+                        <button class="btn btn-success rounded-pill" type="submit" onclick="successButtonClick();">Fair</button>
+                    </form>
+
+                    <!-- Form for the warning button -->
+                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=3}" method="post">
+                        <input type="hidden" name="buttonType" value="warning" />
+                        <button class="btn btn-warning rounded-pill" type="submit" onclick="warningButtonClick();">Poor</button>
+                    </form>
+
+                    <!-- Form for the danger button -->
+                    <form style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}" method="post">
+                        <input type="hidden" name="buttonType" value="danger" />
+                        <button class="btn btn-danger rounded-pill" type="submit" onclick="dangerButtonClick();">Unacceptable</button>
+                    </form>
 
                 </div>
             </div>
@@ -385,12 +410,7 @@
 <!-- Plugins and scripts required by this view-->
 <script src="../vendors/@coreui/utils/js/coreui-utils.js"></script>
 <script src="../js/colors.js"></script>
-<script>
-</script>
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script crossorigin="anonymous"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>

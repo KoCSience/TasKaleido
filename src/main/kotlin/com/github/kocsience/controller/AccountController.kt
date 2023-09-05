@@ -64,6 +64,34 @@ class AccountController(private val accountService: AccountService) {
         //        return "redirect:accounts/${account.uuid}"
         return "redirect:subordinate.html?id=${account.id}"
     }
+
+    @PostMapping("Subordinate.html")
+    fun ref_busyness_status(@RequestParam("id", required = false)id: Int?, model: Model): String{
+        if (id == 0) {
+
+        }
+
+        else if (id == 1) {
+            model.addAttribute("account", accountService.find(id))
+            return "accounts/subordinate"
+        }
+
+
+        else if (id == 2) {
+            model.addAttribute("account", accountService.find(id))
+            return "accounts/subordinate"
+        }
+
+        else if (id == 3) {
+            model.addAttribute("account", accountService.find(id))
+            return "accounts/subordinate"
+        }
+
+        else if (id == 4) {
+            model.addAttribute("account", accountService.find(id))
+            return "accounts/subordinate"
+        }
+    }
 //    @GetMapping("{uuid}")
 //    fun show(@PathVariable uuid: String, model: Model): String {
 //        model.addAttribute("account", accountService.find(uuid))
