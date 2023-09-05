@@ -22,7 +22,7 @@ data class Task(
     var deadline: String,
 
     @ManyToOne
-    val account: Account? = null
+    var account: Account? = null
 )
 
 /*

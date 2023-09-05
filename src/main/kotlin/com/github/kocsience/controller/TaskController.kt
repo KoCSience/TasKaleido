@@ -15,15 +15,17 @@ class TaskController(private val accountService: AccountService, private val tas
     lateinit var session: SessionHolder
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
-    @GetMapping("/css/{file}.{ext}")
-    fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/css/$file.$ext"
+    @GetMapping("/css/{path:.+}")
+    fun cssPaths(@PathVariable path: String): String {
+        println(path)
+        return "/css/$path"
     }
 
-    @GetMapping("/js/{file}.{ext}")
-    fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/js/$file.$ext"
+    @GetMapping("/js/{path:.+}")
+    fun jsPaths(@PathVariable path: String): String {
+        return "/js/$path"
     }
+
 
     @GetMapping("list.html")
     fun list(@RequestParam("accountId", required = false) accountId: Int?, model: Model): String {
@@ -39,10 +41,21 @@ class TaskController(private val accountService: AccountService, private val tas
     fun register() = "tasks/register"
 
     @PostMapping("register.html")
-    fun create(@ModelAttribute task: Task): String {
-        println("Task: $task")
-        taskService.save(task)
-        return "redirect:task.html?id=${task.id}"
+    fun create(@RequestParam("from", required = false) from: String?, @ModelAttribute newTask: Task): String {
+        println("Task: $newTask")
+        newTask.account =
+            if (session.account == null) {
+                accountService.vanillaAccount()
+            } else {
+                session.account
+            }
+        taskService.save(newTask)
+
+        return if (from != null) {
+            "redirect:/$from"
+        } else {
+            "redirect:task.html?id=${newTask.id}"
+        }
     }
 
     @GetMapping("task.html")

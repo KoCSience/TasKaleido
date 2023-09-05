@@ -15,14 +15,15 @@ class AccountController(private val accountService: AccountService, private val 
     lateinit var session: SessionHolder
 
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
-    @GetMapping("/css/{file}.{ext}")
-    fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/css/$file.$ext"
+    @GetMapping("/css/{path:.+}")
+    fun cssPaths(@PathVariable path: String): String {
+        println(path)
+        return "/css/$path"
     }
 
-    @GetMapping("/js/{file}.{ext}")
-    fun jsPath(@PathVariable file: String, @PathVariable ext: String): String {
-        return "/js/$file.$ext"
+    @GetMapping("/js/{path:.+}")
+    fun jsPaths(@PathVariable path: String): String {
+        return "/js/$path"
     }
 
     @GetMapping("", "list.html")

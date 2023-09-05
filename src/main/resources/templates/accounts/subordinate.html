@@ -209,16 +209,16 @@
         Add task
     </button>
 
-    <!-- Modal -->
+    <!-- Task Modal submit -->
     <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add task</h5>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{subordinate.html}" th:method="post">
+                <form th:action="@{/tasks/register.html?from=accounts/subordinate.html}" th:method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add task</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
                         <label for="title">タイトル:</label>
                         <input id="title" name="title" required type="text"><br>
 
@@ -227,12 +227,12 @@
 
                         <label for="contents">プロフィール:</label>
                         <textarea cols="50" id="contents" name="contents" rows="4"></textarea><br>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" type="button">Save changes</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
