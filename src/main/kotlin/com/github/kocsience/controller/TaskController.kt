@@ -14,8 +14,6 @@ class TaskController(private val accountService: AccountService, private val tas
     @Autowired
     lateinit var session: SessionHolder
 
-    //    エンドポイント:
-
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
     @GetMapping("/css/{file}.{ext}")
     fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {

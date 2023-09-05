@@ -15,7 +15,6 @@ class TopController(private val accountService: AccountService, private val task
     @Autowired
     lateinit var session: SessionHolder
 
-
     @GetMapping("/index.html")
     fun hello(model: Model): String {
         model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")

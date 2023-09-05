@@ -13,13 +13,6 @@ class AccountController(private val accountService: AccountService) {
     @Autowired
     lateinit var session: SessionHolder
 
-    //    エンドポイント:
-//    accounts: GET list
-//    accounts/register/: POST createAccount
-//    accounts/login/: POST login
-//    accounts/UUID/: GET show, DELETE delete
-//    accounts/UUID/edit/: PUT update, GET showEdit?
-
     // https://stackoverflow.com/questions/12395115/spring-missing-the-extension-file
     @GetMapping("/css/{file}.{ext}")
     fun cssPath(@PathVariable file: String, @PathVariable ext: String): String {
@@ -70,32 +63,26 @@ class AccountController(private val accountService: AccountService) {
         return "redirect:subordinate.html?id=${account.id}"
     }
 
-    @PostMapping("Subordinate.html")
-    fun ref_busyness_status(@RequestParam("id", required = false)id: Int?, model: Model): String{
-        if (id == 0) {
 
+    @PostMapping("subordinate.html")
+    fun refBusynessStatus(
+        @RequestParam("id", required = false) id: Int?,
+        @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
+        model: Model
+    ): String {
+        if (busynessStatus != null) {
+            // TODO
         }
 
-        else if (id == 1) {
-            model.addAttribute("account", accountService.find(id))
-            return "accounts/subordinate"
-        }
-
-
-        else if (id == 2) {
-            model.addAttribute("account", accountService.find(id))
-            return "accounts/subordinate"
-        }
-
-        else if (id == 3) {
-            model.addAttribute("account", accountService.find(id))
-            return "accounts/subordinate"
-        }
-
-        else if (id == 4) {
-            model.addAttribute("account", accountService.find(id))
-            return "accounts/subordinate"
-        }
+        model.addAttribute(
+            "account",
+            if (id != null) {
+                accountService.find(id)
+            } else {
+                accountService.vanillaAccount()
+            }
+        )
+        return "accounts/subordinate"
     }
 
     @GetMapping("login.html")
