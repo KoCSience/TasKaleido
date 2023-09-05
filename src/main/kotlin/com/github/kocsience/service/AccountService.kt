@@ -12,4 +12,8 @@ class AccountService(private val accountRepository: AccountRepository) {
     fun findAll(): MutableList<Account> = accountRepository.findAll()
 
     fun save(account: Account) = accountRepository.save(account)
+
+    fun vanillaAccount(): Account {
+        return Account(0, "PASSWORD", "NAME", "EMAIL", "PROFILE")
+    }
 }
