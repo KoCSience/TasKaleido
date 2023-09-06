@@ -292,12 +292,10 @@
                     </form>
 
                     <!-- Form for the danger button -->
-                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}">
-                        <input name="buttonType" type="hidden" value="danger"/>
-                        <button class="btn btn-danger rounded-pill" onclick="busynessStatusButton(4);" type="submit">
-                            Unacceptable
-                        </button>
-                    </form>
+                    <button class="btn btn-danger rounded-pill"
+                            onclick="busynessStatusButton(4); location.href = 'subordinate.html?busynessStatus=4'">
+                        Unacceptable
+                    </button>
 
                 </div>
             </div>

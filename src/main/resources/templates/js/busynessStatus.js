@@ -6,6 +6,6 @@ function busynessStatusButton(busynessStatus) {
             ["primary", "info", "success", "warning", "danger"][busynessStatus]
             : "dark" /* 変だったりしたら、灰色 */
         console.log(colorText)
-        target.className = "border-start border-start-4 border-start-" + colorText + "px-3 mb-3";
+        target.className = "border-start border-start-4 border-start-" + colorText + " px-3 mb-3"
     }
 }
