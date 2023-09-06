@@ -249,13 +249,11 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-6">
-                                <div class="border-start border-start-4 border-start-primary px-3 mb-3"
-                                     id="accountStatusColor"
-                                     th:onload="busynessStatusButton([[${busynessStatus}]])">
+                                <div id="accountStatusColor"
+                                     th:attr="class='border-start border-start-4 border-start-__${busynessStatusColor}__ px-3 mb-3'">
                                     <small class="text-medium-emphasis">User info</small>
                                     <div class="fs-5 fw-semibold">User Name</div>
                                 </div>
-                                <!--                                <script>busynessStatusButton(new URLSearchParams(window.location.search).get("busynessStatus"));</script>-->
                             </div>
                         </div>
                         <hr class="mt-0">
