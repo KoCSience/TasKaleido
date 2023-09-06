@@ -45,8 +45,9 @@ class TaskController(private val accountService: AccountService, private val tas
         println("Task: $newTask")
         newTask.account =
             if (session.account == null) {
-                accountService.vanillaAccount()
+                accountService.vanillaAccount() // 適当 cannot saveとかしても良さそう or registerでid指定とか
             } else {
+                session.account!!.tasks.add(newTask)
                 session.account
             }
         taskService.save(newTask)

@@ -49,6 +49,7 @@ class AccountController(private val accountService: AccountService, private val 
             return "redirect:/accounts/login.html"
         }
 
+        println("get subordinate.html: busynessStatus: ${account!!.busynessStatus}")
         model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
         return "accounts/subordinate"
@@ -62,17 +63,21 @@ class AccountController(private val accountService: AccountService, private val 
     ): String {
         if (busynessStatus != null) {
             println("busynessStatus: $busynessStatus")
+            if (session.account != null) {
+                session.account!!.busynessStatus = busynessStatus
+                accountService.find(session.account!!.id!!)!!.busynessStatus = busynessStatus
+            } else {
+                error("cannot set \"busynessStatus\" because by cannot found session")
+            }
         }
 
-        model.addAttribute(
-            "account",
-            if (id != null) {
-                accountService.find(id)
-            } else {
-                accountService.vanillaAccount()
-            }
-        )
-
+        val account = if (id != null) {
+            accountService.find(id)
+        } else {
+            accountService.vanillaAccount()
+        }
+        println("get subordinate.html: busynessStatus: ${account!!.busynessStatus}")
+        model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
         return "accounts/subordinate"
     }
