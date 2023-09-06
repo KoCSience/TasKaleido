@@ -7,7 +7,10 @@ import jakarta.persistence.*
 /**
  * @property id id
  * @property name 名前
- *
+ * @property email メール1
+ * @property profile プロフィール(255文字?)
+ * @property busynessStatus 0: 暇 → 4 忙
+ * @property tasks あんまり上手く動いてないかも
  */
 @Entity
 @Table(name = "accounts")

@@ -55,7 +55,7 @@ class TopController(private val accountService: AccountService, private val task
 //        accountService.save(accountS)
         val accountA = Account(1, "a", "a", "a@a", "a")
         accountService.save(accountA)
-        val accountB = Account(2, "b", "b", "b@b", "b")
+        val accountB = Account(2, "b", "b", "b@b", "b", 3)
         accountService.save(accountB)
         println("Account: $accountA, $accountB")
         val taskA = Task(1, "a", "a", "2000/01/01", accountA)

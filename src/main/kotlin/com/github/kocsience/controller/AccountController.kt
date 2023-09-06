@@ -34,10 +34,14 @@ class AccountController(private val accountService: AccountService, private val 
     }
 
     @GetMapping("subordinate.html")
-    fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        val account = if (id != null) {
+    fun showSubordinate(
+        @RequestParam("id", required = false) id: Int?,
+        @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
+        model: Model
+    ): String {
+        val account = (if (id != null) {
             println("id=$id")
-            accountService.find(id) ?: accountService.vanillaAccount() // 見つからなかったらvanilla
+            accountService.find(id) // 見つからなかったらvanilla
         } else if (session.account != null) {
             println("found account session:")
             println(session.account!!.name)
@@ -47,10 +51,11 @@ class AccountController(private val accountService: AccountService, private val 
             println("no id param & not login yet")
             // no id param & not login yet
             return "redirect:/accounts/login.html"
-        }
+        }) ?: accountService.vanillaAccount()
 
         model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
+        model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
         return "accounts/subordinate"
     }
 
@@ -62,19 +67,35 @@ class AccountController(private val accountService: AccountService, private val 
     ): String {
         if (busynessStatus != null) {
             println("busynessStatus: $busynessStatus")
+            if (session.account != null) {
+                session.account!!.busynessStatus = busynessStatus
+                accountService.find(session.account!!.id!!)!!.busynessStatus = busynessStatus
+            } else {
+                println("cannot set \"busynessStatus\" because by cannot find session")
+            }
         }
 
-        model.addAttribute(
-            "account",
-            if (id != null) {
-                accountService.find(id)
-            } else {
-                accountService.vanillaAccount()
-            }
-        )
+        val account = if (id != null) {
+            accountService.find(id) ?: accountService.vanillaAccount()
+        } else {
+            accountService.vanillaAccount()
+        }
 
+        model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
-        return "accounts/subordinate"
+        model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
+        return "redirect:/accounts/subordinate.html" // キモい実装
+    }
+
+    fun busynessStatusColorChange(busynessStatus: Int?): String {
+        return when (busynessStatus) {
+            0 -> "primary"
+            1 -> "info"
+            2 -> "success"
+            3 -> "warning"
+            4 -> "danger"
+            else -> "dark"
+        }
     }
 
     @GetMapping("register.html")

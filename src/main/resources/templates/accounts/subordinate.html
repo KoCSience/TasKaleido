@@ -46,8 +46,6 @@
     <script src="../js/bootstrap.js" type="text/javascript"></script>
     <!-- busynessStatus-->
     <script src="../js/busynessStatus.js" type="text/javascript"></script>
-
-
 </head>
 
 <body>
@@ -248,23 +246,22 @@
             <div class="card mb-4">
                 <div class="card-header"> Trouble</div>
                 <div class="card-body">
-
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-6">
-                                <div class="border-start border-start-4 border-start-primary px-3 mb-3" id="color">
+                                <div id="accountStatusColor"
+                                     th:attr="class='border-start border-start-4 border-start-__${busynessStatusColor}__ px-3 mb-3'">
                                     <small class="text-medium-emphasis">User info</small>
                                     <div class="fs-5 fw-semibold">User Name</div>
                                 </div>
                             </div>
                         </div>
                         <hr class="mt-0">
-
                     </div>
                     <!-- Form for the primary button -->
                     <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=0}">
                         <input name="buttonType" type="hidden" value="primary"/>
-                        <button class="btn btn-primary rounded-pill" onclick="primaryButtonClick();" type="submit">
+                        <button class="btn btn-primary rounded-pill" onclick="busynessStatusButton(0);" type="submit">
                             Excellent
                         </button>
                     </form>
@@ -272,14 +269,15 @@
                     <!-- Form for the info button -->
                     <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=1}">
                         <input name="buttonType" type="hidden" value="info"/>
-                        <button class="btn btn-info rounded-pill" onclick="infoButtonClick();" type="submit">Good
+                        <button class="btn btn-info rounded-pill" onclick="busynessStatusButton(1);" type="submit">
+                            Good
                         </button>
                     </form>
 
                     <!-- Form for the success button -->
                     <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=2}">
                         <input name="buttonType" type="hidden" value="success"/>
-                        <button class="btn btn-success rounded-pill" onclick="successButtonClick();" type="submit">
+                        <button class="btn btn-success rounded-pill" onclick="busynessStatusButton(2);" type="submit">
                             Fair
                         </button>
                     </form>
@@ -287,15 +285,14 @@
                     <!-- Form for the warning button -->
                     <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=3}">
                         <input name="buttonType" type="hidden" value="warning"/>
-                        <button class="btn btn-warning rounded-pill" onclick="warningButtonClick();" type="submit">
+                        <button class="btn btn-warning rounded-pill" onclick="busynessStatusButton(3);" type="submit">
                             Poor
                         </button>
                     </form>
 
                     <!-- Form for the danger button -->
                     <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}">
-                        <input name="buttonType" type="hidden" value="danger"/>
-                        <button class="btn btn-danger rounded-pill" onclick="dangerButtonClick();" type="submit">
+                        <button class="btn btn-danger rounded-pill" onclick="busynessStatusButton(4);" type="submit">
                             Unacceptable
                         </button>
                     </form>
