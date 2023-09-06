@@ -34,7 +34,11 @@ class AccountController(private val accountService: AccountService, private val 
     }
 
     @GetMapping("subordinate.html")
-    fun showSubordinate(@RequestParam("id", required = false) id: Int?, model: Model): String {
+    fun showSubordinate(
+        @RequestParam("id", required = false) id: Int?,
+        @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
+        model: Model
+    ): String {
         val account = if (id != null) {
             println("id=$id")
             accountService.find(id) ?: accountService.vanillaAccount() // 見つからなかったらvanilla
@@ -50,6 +54,7 @@ class AccountController(private val accountService: AccountService, private val 
         }
 
         println("get subordinate.html: busynessStatus: ${account!!.busynessStatus}")
+        model.addAttribute("busynessStatus", account.busynessStatus) // TODO
         model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
         return "accounts/subordinate"
@@ -76,7 +81,9 @@ class AccountController(private val accountService: AccountService, private val 
         } else {
             accountService.vanillaAccount()
         }
+
         println("get subordinate.html: busynessStatus: ${account!!.busynessStatus}")
+        model.addAttribute("busynessStatus", account.busynessStatus) // TODO
         model.addAttribute("account", account)
         model.addAttribute("task", taskService.vanillaTask())
         return "accounts/subordinate"

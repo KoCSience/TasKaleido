@@ -251,10 +251,11 @@
                             <div class="col-6">
                                 <div class="border-start border-start-4 border-start-primary px-3 mb-3"
                                      id="accountStatusColor"
-                                     th:onload="busynessStatusButton([[${account.busynessStatus}]])">
+                                     th:onload="busynessStatusButton([[${busynessStatus}]])">
                                     <small class="text-medium-emphasis">User info</small>
                                     <div class="fs-5 fw-semibold">User Name</div>
                                 </div>
+                                <!--                                <script>busynessStatusButton(new URLSearchParams(window.location.search).get("busynessStatus"));</script>-->
                             </div>
                         </div>
                         <hr class="mt-0">
@@ -292,10 +293,11 @@
                     </form>
 
                     <!-- Form for the danger button -->
-                    <button class="btn btn-danger rounded-pill"
-                            onclick="busynessStatusButton(4); location.href = 'subordinate.html?busynessStatus=4'">
-                        Unacceptable
-                    </button>
+                    <form method="post" style="display: inline;" th:action="@{subordinate.html?busynessStatus=4}">
+                        <button class="btn btn-danger rounded-pill" onclick="busynessStatusButton(4);" type="submit">
+                            Unacceptable
+                        </button>
+                    </form>
 
                 </div>
             </div>
