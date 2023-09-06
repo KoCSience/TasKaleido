@@ -392,18 +392,37 @@
         </div>
     </div>
 
-
-    <div class="body flex-grow-1 px-3" th:object="${account}">
-        <label>ID</label>
-        <!--    <p th:text="*{uuid}"></p>-->
-        <p th:text="*{id}"></p>
-        <label>Name</label>
-        <p th:text="*{name}"></p>
-        <label>email</label>
-        <p th:text="*{email}"></p>
-        <label>profile</label>
-        <p th:text="*{profile}"></p>
-    </div>
+<!--    アカウントの情報書くとこ-->
+<div class="body flex-grow-1 px-3">
+	<div class="card" th:object="${account}">
+		<div class="card-header">
+			User Info
+		</div>
+		<div class="card-body">
+			<div class="mb-3">
+				<label class="font-weight-bold">ID</label>
+				<p th:text="*{id}"></p>
+			</div>
+			<hr>
+			<div class="mb-3">
+				<label class="font-weight-bold">Name</label>
+				<p th:text="*{name}"></p>
+			</div>
+			<hr>
+			<div class="mb-3">
+				<label class="font-weight-bold">Email</label>
+				<p th:text="*{email}"></p>
+			</div>
+			<hr>
+			<div class="mb-3">
+				<label class="font-weight-bold">Profile</label>
+				<p th:text="*{profile}"></p>
+			</div>
+			<hr>
+		</div>
+	</div>
+</div>
+<!--    ここまで-->
 
     <!--フッター導入-->
     <footer class="footer">
