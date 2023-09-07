@@ -313,17 +313,19 @@
                     <div class="row">
                         <table>
                             <tr>
-                                <td th:each="task : ${tasks}">
-                                    <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
-                                        <!-- Trigger Modal -->
-                                        <div class="bg-primary w-75 rounded mb-2"
-                                             data-bs-target="#myModal"
-                                             data-bs-toggle="modal"
-                                             style="padding-top:75%"
-                                             th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                        <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                            th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                            th:text="${task.title}">Task title</h6>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
+                                            <!-- Trigger Modal -->
+                                            <div class="bg-primary w-75 rounded mb-2"
+                                                 data-bs-target="#myModal"
+                                                 data-bs-toggle="modal"
+                                                 style="padding-top:75%"
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                th:text="${task.title}">Task title</h6>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -334,20 +336,31 @@
         </div>
     </div>
 
-
     <!--Daily tasks-->
     <div class="body flex-grow-1 px-3">
         <div class="container-lg">
             <div class="card mb-4">
                 <div class="card-header"> Daily Tasks</div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
-                            <div class="bg-primary w-75 rounded mb-2" data-bs-target="#myModal" data-bs-toggle="modal"
-                                 style="padding-top:75%"></div>
-                            <h6 data-bs-target="#myModal" data-bs-toggle="modal">Task name</h6>
-                        </div>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
+                                        <!-- Trigger Modal -->
+                                        <div class="bg-primary w-75 rounded mb-2"
+                                             data-bs-target="#myModal"
+                                             data-bs-toggle="modal"
+                                             style="padding-top:75%"
+                                             th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                        <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                            th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                            th:text="${task.title}">Task title</h6>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -360,11 +373,25 @@
                 <div class="card-header"> Weekly Tasks</div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
-                            <div class="bg-primary w-75 rounded mb-2" data-bs-target="#myModal" data-bs-toggle="modal"
-                                 style="padding-top:75%"></div>
-                            <h6 data-bs-target="#myModal" data-bs-toggle="modal">Task name</h6>
-                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
+                                            <!-- Trigger Modal -->
+                                            <div class="bg-primary w-75 rounded mb-2"
+                                                 data-bs-target="#myModal"
+                                                 data-bs-toggle="modal"
+                                                 style="padding-top:75%"
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                th:text="${task.title}">Task title</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
