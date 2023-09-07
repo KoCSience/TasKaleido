@@ -38,18 +38,24 @@ class TaskController(private val accountService: AccountService, private val tas
     }
 
     @GetMapping("register.html")
-    fun register() = "tasks/register"
+    fun register(): String {
+        if (session.account == null) {
+            return "redirect:/accounts/login.html?from='tasks/register.html'"
+        } else {
+            return "tasks/register"
+        }
+    }
 
     @PostMapping("register.html")
     fun create(@RequestParam("from", required = false) from: String?, @ModelAttribute newTask: Task): String {
-        println("Task: $newTask")
-        newTask.account =
-            if (session.account == null) {
-                accountService.vanillaAccount() // 適当 cannot saveとかしても良さそう or registerでid指定とか
-            } else {
-                session.account
-            }
+        println("Task from form: $newTask")
+        if (session.account == null) {
+            return "redirect:/accounts/login.html?from='tasks/register.html'"
+        }
+
+        newTask.account = session.account!!
         taskService.save(newTask)
+//        println("Task after save: $newTask")
 
         return if (from != null) {
             "redirect:/$from"
