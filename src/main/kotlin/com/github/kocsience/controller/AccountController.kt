@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Controller
 @RequestMapping("/accounts", "/accounts/")
@@ -56,6 +58,7 @@ class AccountController(private val accountService: AccountService, private val 
         model.addAttribute("account", account)
         model.addAttribute("tasks", account.tasks)
         model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
+        model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         return "accounts/subordinate"
     }
 
