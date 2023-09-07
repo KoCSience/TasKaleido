@@ -439,28 +439,29 @@
         <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
              tabindex="-1" th:attr="id='myModal-__${task.id}__'">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <form th:action="@{/tasks/update.html?from=accounts/subordinate.html}" th:method="put">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="taskModalLabel">タスク内容の変更</h5>
-                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                <div class="modal-content" th:object="${task}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex custom-align">
+                            <p class="left">title</p>
+                            <p class="center" th:text="*{title}"></p>
                         </div>
-                        <div class="modal-body" th:object="${task}">
-                            <label for="task-modal-title">Title:</label>
-                            <input id="task-modal-title" name="title" required th:field="*{title}" type="text"><br>
-
-                            <label for="task-modal-deadline">Deadline:</label>
-                            <input id="task-modal-deadline" name="deadline" required th:field="*{deadline}" type="date"><br>
-
-                            <label for="task-modal-contents">Contents:</label>
-                            <textarea cols="50" id="task-modal-contents" name="contents" rows="4"
-                                      th:field="*{contents}"></textarea><br>
+                        <div class="d-flex custom-align">
+                            <p class="left">deadline</p>
+                            <p class="center" th:text="*{deadline}"></p>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        <div class="d-flex custom-align">
+                            <p class="left">status</p>
+                            <p class="center" th:text="*{contents}"></p>
                         </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="button">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
