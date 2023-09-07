@@ -27,10 +27,9 @@ class TopController(private val accountService: AccountService, private val task
         return "/js/$path"
     }
 
-
-    @GetMapping("/index.html")
+    @GetMapping("", "/", "/index.html")
     fun hello(model: Model): String {
-        return demo()
+        return "redirect:demo"
     }
 
     @GetMapping("management.html")
