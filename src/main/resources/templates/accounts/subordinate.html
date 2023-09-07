@@ -100,9 +100,7 @@
                 </svg>
             </a>
             <ul class="header-nav d-none d-md-flex">
-                <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
             </ul>
             <ul class="header-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#">
@@ -342,25 +340,27 @@
             <div class="card mb-4">
                 <div class="card-header"> Daily Tasks</div>
                 <div class="card-body">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
-                                        <!-- Trigger Modal -->
-                                        <div class="bg-primary w-75 rounded mb-2"
-                                             data-bs-target="#myModal"
-                                             data-bs-toggle="modal"
-                                             style="padding-top:75%"
-                                             th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                        <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                            th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                            th:text="${task.title}">Task title</h6>
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline < tomorrow}" >
+<!--                                            &lt;!&ndash; Trigger Modal -->
+                                            <div class="bg-primary w-75 rounded mb-2"
+                                                 data-bs-target="#myModal"
+                                                 data-bs-toggle="modal"
+                                                 style="padding-top:75%"
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                th:text="${task.title}">Task title</h6>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline <= nextSaturday}">
                                             <!-- Trigger Modal -->
                                             <div class="bg-primary w-75 rounded mb-2"
                                                  data-bs-target="#myModal"
@@ -397,6 +397,39 @@
             </div>
         </div>
     </div>
+
+    <!--Monthly tasks-->
+    <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+            <div class="card mb-4">
+                <div class="card-header"> Monthly Tasks</div>
+                <div class="card-body">
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline <= endOfMonth}">
+                                            <!-- Trigger Modal -->
+                                            <div class="bg-primary w-75 rounded mb-2"
+                                                 data-bs-target="#myModal"
+                                                 data-bs-toggle="modal"
+                                                 style="padding-top:75%"
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                th:text="${task.title}">Task title</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- task Modal show -->
     <div th:each="task : ${tasks}">
