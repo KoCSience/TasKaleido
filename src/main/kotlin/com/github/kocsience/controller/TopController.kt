@@ -27,18 +27,9 @@ class TopController(private val accountService: AccountService, private val task
         return "/js/$path"
     }
 
-    @GetMapping("/index.html")
+    @GetMapping("", "/","/index.html")
     fun hello(model: Model): String {
-        model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
-        return "index"
-    }
-
-    @GetMapping("management.html")
-    fun showManagement(model: Model): String {
-        // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
-        model.addAttribute("accounts", accountService.findAll())
-        model.addAttribute("task", taskService.vanillaTask(accountService.vanillaAccount()))
-        return "management"
+        return "redirect:demo"
     }
 
     @GetMapping("subordinate.html")
