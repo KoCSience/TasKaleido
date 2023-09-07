@@ -116,7 +116,7 @@ class AccountController(private val accountService: AccountService, private val 
     fun showLogin() = "accounts/login"
 
     @PostMapping("login.html")
-    fun login(@ModelAttribute loginForm: LoginForm): String {
+    fun login(@RequestParam("from", required = false) from: String?, @ModelAttribute loginForm: LoginForm): String {
         val account = accountService.find(loginForm.id)
         if (account == null) {
             println("cannot find account id.")
@@ -125,9 +125,11 @@ class AccountController(private val accountService: AccountService, private val 
         if (account.password == loginForm.password) {
             println("login successful")
             session.account = account
-            return "redirect:subordinate.html?id=${account.id}"
+
+            return if (from == null) "redirect:subordinate.html?id=${account.id}" else "/${from}"
         }
         println("wrong password")
+
         return "accounts/login"
     }
 
