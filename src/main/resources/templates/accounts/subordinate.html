@@ -322,7 +322,7 @@
                                                  th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
                                             <h6 data-bs-target="#myModal" data-bs-toggle="modal"
                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                th:text="${task.title}">Task title</h6>
+                                                th:text="*{task.title}">Task title</h6>
                                         </div>
                                     </div>
                                 </td>
@@ -345,8 +345,9 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline < tomorrow}" >
-<!--                                            &lt;!&ndash; Trigger Modal -->
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
+                                             th:if="${task.deadline < tomorrow}">
+                                            <!--                                            &lt;!&ndash; Trigger Modal -->
                                             <div class="bg-primary w-75 rounded mb-2"
                                                  data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
@@ -377,7 +378,8 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline <= nextSaturday}">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
+                                             th:if="${task.deadline <= nextSaturday}">
                                             <!-- Trigger Modal -->
                                             <div class="bg-primary w-75 rounded mb-2"
                                                  data-bs-target="#myModal"
@@ -409,7 +411,8 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}" th:if="${task.deadline <= endOfMonth}">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
+                                             th:if="${task.deadline <= endOfMonth}">
                                             <!-- Trigger Modal -->
                                             <div class="bg-primary w-75 rounded mb-2"
                                                  data-bs-target="#myModal"
