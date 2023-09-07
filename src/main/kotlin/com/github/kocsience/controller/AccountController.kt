@@ -8,11 +8,10 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
 import java.time.DayOfWeek
-import java.time.LocalDateTime
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-
 
 
 @Controller
@@ -60,16 +59,13 @@ class AccountController(private val accountService: AccountService, private val 
             return "redirect:/accounts/login.html"
         }) ?: accountService.vanillaAccount()
 
-        val nextSaturday: LocalDateTime
-
         val current = LocalDateTime.now()
-        if (current.dayOfWeek == DayOfWeek.SATURDAY) {
-            nextSaturday = current
+        val nextSaturday: LocalDateTime = if (current.dayOfWeek == DayOfWeek.SATURDAY) {
+            current
         } else {
             val daysUntilSaturday = DayOfWeek.SATURDAY.value - current.dayOfWeek.value
-            nextSaturday = current.plusDays(daysUntilSaturday.toLong())
+            current.plusDays(daysUntilSaturday.toLong())
         }
-
         val currentYearMonth = YearMonth.now()
         val lastDayOfMonth: LocalDate = currentYearMonth.atEndOfMonth()
 
@@ -77,7 +73,10 @@ class AccountController(private val accountService: AccountService, private val 
         model.addAttribute("tasks", account.tasks)
         model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
         model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
-        model.addAttribute("tomorrow", LocalDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
+        model.addAttribute(
+            "tomorrow",
+            LocalDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+        )
         model.addAttribute("nextSaturday", nextSaturday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
         model.addAttribute("endOfMonth", lastDayOfMonth.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
 
