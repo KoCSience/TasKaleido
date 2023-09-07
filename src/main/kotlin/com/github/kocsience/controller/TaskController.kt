@@ -64,6 +64,27 @@ class TaskController(private val accountService: AccountService, private val tas
         }
     }
 
+    @PutMapping("update.html")
+    fun update(
+        @RequestParam id: Int,
+        @RequestParam("from", required = false) from: String?,
+        @ModelAttribute task: Task
+    ): String {
+        if (session.account == null) {
+            return "redirect:/accounts/login.html?from='tasks/update.html'"
+        }
+
+        task.account = session.account!!
+        println("update Task: $task , ${session.account}")
+        taskService.save(task.copy(id = id)) // なんかcopyしてる
+        return if (from != null) {
+            "redirect:/$from"
+        } else {
+            "redirect:task.html?id=${id}"
+        }
+    }
+
+
     @GetMapping("task.html")
     fun show(@RequestParam("id", required = false) id: Int?, model: Model): String {
         val task = if (id != null) taskService.find(id)
