@@ -350,9 +350,35 @@
                                                     - Jul 10, 2020</small></div>
                                             </div>
                                         </td>
-                                        <td class="text-center" th:text="${account.busynessStatus}">
-                                            reaction
+<!--                                        <td class="text-center" th:text="${account.busynessStatus}">-->
+                                        <td>
+
+                                            <!-- When busynessStatus is 0 -->
+                                            <button class="btn btn-primary rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 0}">
+                                                Excellent
+                                            </button>
+
+                                            <!-- When busynessStatus is 1 -->
+                                            <button class="btn btn-info rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 1}">
+                                                Good
+                                            </button>
+
+                                            <!-- When busynessStatus is 2 -->
+                                            <button class="btn btn-success rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 2}">
+                                                Fair
+                                            </button>
+
+                                            <!-- When busynessStatus is 3 -->
+                                            <button class="btn btn-warning rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 3}">
+                                                Poor
+                                            </button>
+
+                                            <!-- When busynessStatus is 4 -->
+                                            <button class="btn btn-danger rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 4}">
+                                                Unacceptable
+                                            </button>
                                         </td>
+
                                         <td>
                                             <div class="small text-medium-emphasis">Last login</div>
                                             <div class="fw-semibold">10 sec ago</div>
