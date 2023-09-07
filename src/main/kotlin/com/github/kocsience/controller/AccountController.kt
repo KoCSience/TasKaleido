@@ -59,6 +59,10 @@ class AccountController(private val accountService: AccountService, private val 
             return "redirect:/accounts/login.html"
         }) ?: accountService.vanillaAccount()
 
+        model.addAttribute("account", account)
+        model.addAttribute("tasks", account.tasks)
+        model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
+        
         val current = LocalDateTime.now()
         val nextSaturday: LocalDateTime = if (current.dayOfWeek == DayOfWeek.SATURDAY) {
             current
@@ -68,10 +72,6 @@ class AccountController(private val accountService: AccountService, private val 
         }
         val currentYearMonth = YearMonth.now()
         val lastDayOfMonth: LocalDate = currentYearMonth.atEndOfMonth()
-
-        model.addAttribute("account", account)
-        model.addAttribute("tasks", account.tasks)
-        model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
         model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
         model.addAttribute(
             "tomorrow",
