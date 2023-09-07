@@ -51,9 +51,12 @@ class TopController(private val accountService: AccountService, private val task
         println("Account: $accountA, $accountB")
         val taskA = Task(1, "a", "a", "2000/01/01", accountA)
         taskService.save(taskA)
+
         val taskB = Task(2, "b", "b", "2023/11/11", accountB)
         taskService.save(taskB)
-        println("Task: $taskA, $taskB")
+        val task9 = Task(3, "9", "9", "2023/09/09", accountB)
+        taskService.save(task9)
+        println("Task: $taskA, $taskB, $task9")
         return "index"
     }
 }

@@ -125,7 +125,9 @@
             <!--ユーザーアイコンの導入とクリックした際の動作-->
             <ul class="header-nav ms-3">
                 <li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true" class="nav-link py-0"
-                                                 data-coreui-toggle="dropdown" th:href="@{/accounts/subordinate.html(id=${account.id})}" role="button">
+                                                 data-coreui-toggle="dropdown"
+                                                 role="button"
+                                                 th:href="@{/accounts/subordinate.html(id=${account.id})}">
                     <div class="avatar avatar-md"><p th:text="${account.name}"></p></div>
                 </a>
                     <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -309,12 +311,23 @@
                 <div class="card-header"> Working on</div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
-                            <!-- Trigger Modal -->
-                            <div class="bg-primary w-75 rounded mb-2" data-bs-target="#myModal" data-bs-toggle="modal"
-                                 style="padding-top:75%"></div>
-                            <h6 data-bs-target="#myModal" data-bs-toggle="modal">Task name</h6>
-                        </div>
+                        <table>
+                            <tr>
+                                <td th:each="task : ${tasks}">
+                                    <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
+                                        <!-- Trigger Modal -->
+                                        <div class="bg-primary w-75 rounded mb-2"
+                                             data-bs-target="#myModal"
+                                             data-bs-toggle="modal"
+                                             style="padding-top:75%"
+                                             th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                        <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                            th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                            th:text="${task.title}">Task title</h6>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -359,66 +372,69 @@
     </div>
 
     <!-- task Modal show -->
-    <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content" th:object="${task}">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex custom-align">
-                        <p class="left">title</p>
-                        <p class="center" th:text="*{title}"></p>
+    <div th:each="task : ${tasks}">
+        <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
+             tabindex="-1" th:attr="id='myModal-__${task.id}__'">
+            <div class="modal-dialog">
+                <div class="modal-content" th:object="${task}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
-                    <div class="d-flex custom-align">
-                        <p class="left">deadline</p>
-                        <p class="center" th:text="*{deadline}"></p>
+                    <div class="modal-body">
+                        <div class="d-flex custom-align">
+                            <p class="left">title</p>
+                            <p class="center" th:text="*{title}"></p>
+                        </div>
+                        <div class="d-flex custom-align">
+                            <p class="left">deadline</p>
+                            <p class="center" th:text="*{deadline}"></p>
+                        </div>
+                        <div class="d-flex custom-align">
+                            <p class="left">status</p>
+                            <p class="center" th:text="*{contents}"></p>
+                        </div>
                     </div>
-                    <div class="d-flex custom-align">
-                        <p class="left">status</p>
-                        <p class="center" th:text="*{contents}"></p>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="button">Save changes</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    <button class="btn btn-primary" type="button">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
-<!--    アカウントの情報書くとこ-->
-<div class="body flex-grow-1 px-3">
-	<div class="card" th:object="${account}">
-		<div class="card-header">
-			User Info
-		</div>
-		<div class="card-body">
-			<div class="mb-3">
-				<label class="font-weight-bold">ID</label>
-				<p th:text="*{id}"></p>
-			</div>
-			<hr>
-			<div class="mb-3">
-				<label class="font-weight-bold">Name</label>
-				<p th:text="*{name}"></p>
-			</div>
-			<hr>
-			<div class="mb-3">
-				<label class="font-weight-bold">Email</label>
-				<p th:text="*{email}"></p>
-			</div>
-			<hr>
-			<div class="mb-3">
-				<label class="font-weight-bold">Profile</label>
-				<p th:text="*{profile}"></p>
-			</div>
-			<hr>
-		</div>
-	</div>
-</div>
-<!--    ここまで-->
+    <!--    アカウントの情報書くとこ-->
+    <div class="body flex-grow-1 px-3">
+        <div class="card" th:object="${account}">
+            <div class="card-header">
+                User Info
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="font-weight-bold">ID</label>
+                    <p th:text="*{id}"></p>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label class="font-weight-bold">Name</label>
+                    <p th:text="*{name}"></p>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label class="font-weight-bold">Email</label>
+                    <p th:text="*{email}"></p>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label class="font-weight-bold">Profile</label>
+                    <p th:text="*{profile}"></p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <!--    ここまで-->
 
     <!--フッター導入-->
     <footer class="footer">

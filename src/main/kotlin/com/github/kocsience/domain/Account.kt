@@ -33,6 +33,6 @@ data class Account(
     var busynessStatus: Int? = null,
     // 誕生日
     // 入社年月日
-    @OneToMany(mappedBy = "account", cascade = [CascadeType.ALL])
-    val tasks: MutableList<Task> = mutableListOf()
+    @OneToMany(mappedBy = "account", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+    var tasks: MutableList<Task> = mutableListOf()
 )

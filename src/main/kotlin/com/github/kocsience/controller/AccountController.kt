@@ -54,7 +54,7 @@ class AccountController(private val accountService: AccountService, private val 
         }) ?: accountService.vanillaAccount()
 
         model.addAttribute("account", account)
-        model.addAttribute("task", taskService.vanillaTask())
+        model.addAttribute("tasks", account.tasks)
         model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
         return "accounts/subordinate"
     }
@@ -84,7 +84,7 @@ class AccountController(private val accountService: AccountService, private val 
         }
 
         model.addAttribute("account", account)
-        model.addAttribute("task", taskService.vanillaTask())
+        model.addAttribute("tasks", account.tasks)
         model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
         return "redirect:/accounts/subordinate.html" // キモい実装
     }
