@@ -27,10 +27,10 @@ class TopController(private val accountService: AccountService, private val task
         return "/js/$path"
     }
 
+
     @GetMapping("/index.html")
     fun hello(model: Model): String {
-        model.addAttribute("message", "THIS IS JUST A TEST MESSAGE!")
-        return "index"
+        return demo()
     }
 
     @GetMapping("management.html")
