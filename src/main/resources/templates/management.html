@@ -76,7 +76,8 @@
 <div class="wrapper d-flex flex-column min-vh-100 bg-light">
     <header class="header header-sticky mb-4">
         <div class="container-fluid">
-            <button class="header-toggler px-md-0 me-md-3" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
+            <button class="header-toggler px-md-0 me-md-3"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
                     type="button">
                 <svg class="icon icon-lg">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
@@ -258,28 +259,28 @@
                         <canvas class="chart" height="30" id="main-chart1"></canvas>
                     </div>
                 </div>
-<!--                無駄なやつ消した-->
-<!--                <div class="card-footer">-->
-<!--                    <div class="row row-cols-1 row-cols-md-5 text-center">-->
-<!--                        <div class="col mb-sm-2 mb-0">-->
-<!--                            <div class="text-medium-emphasis">Visits</div>-->
-<!--                            <div class="fw-semibold">29.703 Users (40%)</div>-->
-<!--                            <div class="progress progress-thin mt-2">-->
-<!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"-->
-<!--                                     class="progress-bar bg-success" role="progressbar" style="width: 40%"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col mb-sm-2 mb-0">-->
-<!--                            <div class="text-medium-emphasis">Unique</div>-->
-<!--                            <div class="fw-semibold">24.093 Users (20%)</div>-->
-<!--                            <div class="progress progress-thin mt-2">-->
-<!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="20"-->
-<!--                                     class="progress-bar bg-info" role="progressbar" style="width: 20%"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                ここまで(見栄え的にdivの枠組みだけ残した)-->
+                <!--                無駄なやつ消した-->
+                <!--                <div class="card-footer">-->
+                <!--                    <div class="row row-cols-1 row-cols-md-5 text-center">-->
+                <!--                        <div class="col mb-sm-2 mb-0">-->
+                <!--                            <div class="text-medium-emphasis">Visits</div>-->
+                <!--                            <div class="fw-semibold">29.703 Users (40%)</div>-->
+                <!--                            <div class="progress progress-thin mt-2">-->
+                <!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"-->
+                <!--                                     class="progress-bar bg-success" role="progressbar" style="width: 40%"></div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="col mb-sm-2 mb-0">-->
+                <!--                            <div class="text-medium-emphasis">Unique</div>-->
+                <!--                            <div class="fw-semibold">24.093 Users (20%)</div>-->
+                <!--                            <div class="progress progress-thin mt-2">-->
+                <!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="20"-->
+                <!--                                     class="progress-bar bg-info" role="progressbar" style="width: 20%"></div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                ここまで(見栄え的にdivの枠組みだけ残した)-->
             </div>
             <!-- /.row-->
             <div class="row">
@@ -312,7 +313,7 @@
                                     <tr class="align-middle" th:each="account : ${accounts}">
                                         <td class="text-center">
                                             <div class="avatar avatar-md">
-<!--                                                アイコンがあった場所-->
+                                                <!--                                                アイコンがあった場所-->
                                             </div>
                                         </td>
                                         <td th:text="${account.name}">
@@ -330,33 +331,38 @@
                                                     - Jul 10, 2020</small></div>
                                             </div>
                                         </td>
-<!--                                        <td class="text-center" th:text="${account.busynessStatus}">-->
+                                        <!--                                        <td class="text-center" th:text="${account.busynessStatus}">-->
+                                        <!--                                        </td>-->
                                         <td>
-
                                             <!-- When busynessStatus is 0 -->
-                                            <button class="btn btn-primary rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 0}">
+                                            <div class="btn btn-primary rounded-pill"
+                                                 th:if="${account.busynessStatus != null && account.busynessStatus == 0}">
                                                 Excellent
-                                            </button>
+                                            </div>
 
                                             <!-- When busynessStatus is 1 -->
-                                            <button class="btn btn-info rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 1}">
+                                            <div class="btn btn-info rounded-pill"
+                                                 th:if="${account.busynessStatus != null && account.busynessStatus == 1}">
                                                 Good
-                                            </button>
+                                            </div>
 
                                             <!-- When busynessStatus is 2 -->
-                                            <button class="btn btn-success rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 2}">
+                                            <div class="btn btn-success rounded-pill"
+                                                 th:if="${account.busynessStatus != null && account.busynessStatus == 2}">
                                                 Fair
-                                            </button>
+                                            </div>
 
                                             <!-- When busynessStatus is 3 -->
-                                            <button class="btn btn-warning rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 3}">
+                                            <div class="btn btn-warning rounded-pill"
+                                                 th:if="${account.busynessStatus != null && account.busynessStatus == 3}">
                                                 Poor
-                                            </button>
+                                            </div>
 
                                             <!-- When busynessStatus is 4 -->
-                                            <button class="btn btn-danger rounded-pill" th:if="${account.busynessStatus != null && account.busynessStatus == 4}">
+                                            <div class="btn btn-danger rounded-pill"
+                                                 th:if="${account.busynessStatus != null && account.busynessStatus == 4}">
                                                 Unacceptable
-                                            </button>
+                                            </div>
                                         </td>
 
                                         <td>

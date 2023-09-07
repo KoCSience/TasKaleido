@@ -65,11 +65,13 @@ class AccountController(private val accountService: AccountService, private val 
         @RequestParam("busynessStatus", required = false) busynessStatus: Int?,
         model: Model
     ): String {
+        // TODO: refactoring したい
         if (busynessStatus != null) {
             println("busynessStatus: $busynessStatus")
-            if (session.account != null) {
-                session.account!!.busynessStatus = busynessStatus
-                accountService.find(session.account!!.id!!)!!.busynessStatus = busynessStatus
+            val account = session.account
+            if (account != null) {
+                account.busynessStatus = busynessStatus
+                accountService.replace(account)
             } else {
                 println("cannot set \"busynessStatus\" because by cannot find session")
             }

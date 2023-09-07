@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 class ManagementController(private val accountService: AccountService, private val taskService: TaskService) {
     @Autowired
     lateinit var session: SessionHolder
+
     @GetMapping("/css/{path:.+}")
     fun cssPaths(@PathVariable path: String): String {
         return "/css/$path"
@@ -28,7 +29,6 @@ class ManagementController(private val accountService: AccountService, private v
     fun showManagement(model: Model): String {
         // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
-
 
         model.addAttribute("task", taskService.vanillaTask(accountService.vanillaAccount())) // 誰のtaskなのか指定できるようにする
         return "management"
