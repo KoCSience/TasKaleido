@@ -39,10 +39,10 @@ class TaskController(private val accountService: AccountService, private val tas
 
     @GetMapping("register.html")
     fun register(): String {
-        if (session.account == null) {
-            return "redirect:/accounts/login.html?from='tasks/register.html'"
+        return if (session.account == null) {
+            "redirect:/accounts/login.html?from='tasks/register.html'"
         } else {
-            return "tasks/register"
+            "tasks/register"
         }
     }
 
@@ -55,6 +55,7 @@ class TaskController(private val accountService: AccountService, private val tas
 
         newTask.account = session.account!!
         taskService.save(newTask)
+        session.account = accountService.find(session.account!!.id!!)
 //        println("Task after save: $newTask")
 
         return if (from != null) {

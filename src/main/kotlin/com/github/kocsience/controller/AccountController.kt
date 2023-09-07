@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
+import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+
 
 @Controller
 @RequestMapping("/accounts", "/accounts/")
@@ -55,10 +59,27 @@ class AccountController(private val accountService: AccountService, private val 
             return "redirect:/accounts/login.html"
         }) ?: accountService.vanillaAccount()
 
+        val current = LocalDateTime.now()
+        val nextSaturday: LocalDateTime = if (current.dayOfWeek == DayOfWeek.SATURDAY) {
+            current
+        } else {
+            val daysUntilSaturday = DayOfWeek.SATURDAY.value - current.dayOfWeek.value
+            current.plusDays(daysUntilSaturday.toLong())
+        }
+        val currentYearMonth = YearMonth.now()
+        val lastDayOfMonth: LocalDate = currentYearMonth.atEndOfMonth()
+
         model.addAttribute("account", account)
         model.addAttribute("tasks", account.tasks)
         model.addAttribute("busynessStatusColor", busynessStatusColorChange(account.busynessStatus))
-        model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
+        model.addAttribute(
+            "tomorrow",
+            LocalDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+        )
+        model.addAttribute("nextSaturday", nextSaturday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
+        model.addAttribute("endOfMonth", lastDayOfMonth.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
+
         return "accounts/subordinate"
     }
 
