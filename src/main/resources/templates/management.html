@@ -74,448 +74,416 @@
     <button class="sidebar-toggler" data-coreui-toggle="unfoldable" type="button"></button>
 </div>
 <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-    <header class="header header-sticky mb-4">
-        <div class="container-fluid">
-            <button class="header-toggler px-md-0 me-md-3"
-                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
-                    type="button">
+
+<header class="header header-sticky mb-4">
+    <div class="container-fluid">
+        <button class="header-toggler px-md-0 me-md-3"
+                onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
+                type="button">
+            <svg class="icon icon-lg">
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+            </svg>
+        </button>
+        <ul class="header-nav d-none d-md-flex">
+        </ul>
+        <ul class="header-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">
                 <svg class="icon icon-lg">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                 </svg>
-            </button>
-            <ul class="header-nav d-none d-md-flex">
-            </ul>
-            <ul class="header-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">
-                    <svg class="icon icon-lg">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                    </svg>
-                </a></li>
-                <li class="nav-item"><a class="nav-link" href="#">
-                    <svg class="icon icon-lg">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                    </svg>
-                </a></li>
-                <li class="nav-item"><a class="nav-link" href="#">
-                    <svg class="icon icon-lg">
+            </a></li>
+            <li class="nav-item"><a class="nav-link" href="#">
+                <svg class="icon icon-lg">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+                </svg>
+            </a></li>
+            <li class="nav-item"><a class="nav-link" href="#">
+                <svg class="icon icon-lg">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                </svg>
+            </a></li>
+        </ul>
+        <ul class="header-nav ms-3">
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link py-0"
+                                             data-coreui-toggle="dropdown" href="#" role="button">
+                    <div class="avatar avatar-md">
+                        <img alt="user@email.com" class="avatar-img" src="assets/img/avatars/8.jpg">
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pt-0">
+                    <div class="dropdown-header bg-light py-2"><div class="fw-semibold">Account</div></div>
+                    <a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                        </svg>
+                        Updates<span class="badge badge-sm bg-info ms-2">42</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                     </svg>
-                </a></li>
-            </ul>
-            <ul class="header-nav ms-3">
-                <li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true" class="nav-link py-0"
-                                                 data-coreui-toggle="dropdown" href="#" role="button">
-                    <div class="avatar avatar-md"><img alt="user@email.com" class="avatar-img"
-                                                       src="assets/img/avatars/8.jpg"></div>
-                </a>
-                    <div class="dropdown-menu dropdown-menu-end pt-0">
-                        <div class="dropdown-header bg-light py-2">
-                            <div class="fw-semibold">Account</div>
-                        </div>
-                        <a class="dropdown-item" href="#">
-                            <svg class="icon me-2">
-                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                            </svg>
-                            Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item"
-                                                                                             href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                        </svg>
-                        Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item"
-                                                                                             href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-                        </svg>
-                        Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-                        </svg>
-                        Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
-                        <div class="dropdown-header bg-light py-2">
-                            <div class="fw-semibold">Settings</div>
-                        </div>
-                        <a class="dropdown-item" href="#">
-                            <svg class="icon me-2">
-                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                            </svg>
-                            Profile</a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                        </svg>
-                        Settings</a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                        </svg>
-                        Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item"
-                                                                                               href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                        </svg>
-                        Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <svg class="icon me-2">
-                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                            </svg>
-                            Lock Account</a><a class="dropdown-item" href="#">
-                        <svg class="icon me-2">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                        </svg>
-                        Logout</a>
+                    Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item"
+                                                                                         href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+                    </svg>
+                    Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
+                    </svg>
+                    Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
+                    <div class="dropdown-header bg-light py-2">
+                        <div class="fw-semibold">Settings</div>
                     </div>
+                    <a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                        </svg>
+                        Profile</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                    </svg>
+                    Settings</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
+                    </svg>
+                    Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item"
+                                                                                           href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                    </svg>
+                    Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                        </svg>
+                        Lock Account</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                    </svg>
+                    Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="header-divider"></div>
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-0 ms-2">
+                <li class="breadcrumb-item">
+                    <!-- if breadcrumb is single--><a href="#">Home</a>
                 </li>
-            </ul>
-        </div>
-        <div class="header-divider"></div>
-        <div class="container-fluid">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb my-0 ms-2">
-                    <li class="breadcrumb-item">
-                        <!-- if breadcrumb is single--><a href="#">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active"><span>Manager</span></li>
-                </ol>
-            </nav>
-        </div>
-    </header>
+                <li class="breadcrumb-item active"><span>Manager</span></li>
+            </ol>
+        </nav>
+    </div>
+</header>
 
-    <!--Task-->
-    <div class="body flex-grow-1 px-3">
-
-                <div class="card-body">
-                    <h5 style="margin: 0.2em 2em 1em;" th:if="${selectedAccount != null}"
-                        th:utext="${selectedAccount.name}">Selected Account Name</h5>
-                  
-                    <!--working　on-->
-                    <div class="body flex-grow-1 px-3">
-                        <div class="container-lg">
-                            <div class="card mb-4">
-                                <div class="card-header"> All Tasks</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
-                                                             th:each="task : ${tasks}" th:if="${tasks != null}">
-                                                            <!-- Trigger Modal -->
-                                                            <div class="bg-primary w-75 rounded mb-2"
-                                                                 data-bs-target="#myModal"
-                                                                 data-bs-toggle="modal"
-                                                                 style="padding-top:75%"
-                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                                th:text="*{task.title}">Task title</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <!--Daily tasks-->
-                    <div class="body flex-grow-1 px-3">
-                        <div class="container-lg">
-                            <div class="card mb-4">
-                                <div class="card-header"> Daily Tasks</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
-                                                             th:each="task : ${tasks}"
-                                                             th:if="${tasks != null && task.deadline < tomorrow}">
-                                                            <!-- Trigger Modal -->
-                                                            <div class="bg-primary w-75 rounded mb-2"
-                                                                 data-bs-target="#myModal"
-                                                                 data-bs-toggle="modal"
-                                                                 style="padding-top:75%"
-                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                                th:text="${task.title}">Task title</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Weekly tasks-->
-                    <div class="body flex-grow-1 px-3">
-                        <div class="container-lg">
-                            <div class="card mb-4">
-                                <div class="card-header"> Weekly Tasks</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
-                                                             th:each="task : ${tasks}"
-                                                             th:if="${tasks != null && task.deadline <= nextSaturday}">
-                                                            <!-- Trigger Modal -->
-                                                            <div class="bg-primary w-75 rounded mb-2"
-                                                                 data-bs-target="#myModal"
-                                                                 data-bs-toggle="modal"
-                                                                 style="padding-top:75%"
-                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                                th:text="${task.title}">Task title</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Monthly tasks-->
-                    <div class="body flex-grow-1 px-3">
-                        <div class="container-lg">
-                            <div class="card mb-4">
-                                <div class="card-header"> Monthly Tasks</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
-                                                             th:each="task : ${tasks}"
-                                                             th:if="${tasks != null && task.deadline <= endOfMonth}">
-                                                            <!-- Trigger Modal -->
-                                                            <div class="bg-primary w-75 rounded mb-2"
-                                                                 data-bs-target="#myModal"
-                                                                 data-bs-toggle="modal"
-                                                                 style="padding-top:75%"
-                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                                th:text="${task.title}">Task title</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+<!--Task-->
+<div class="body flex-grow-1 px-3">
+    <div class="card-body">
+        <h5 style="margin: 0.2em 2em 1em;" th:if="${selectedAccount != null}"
+            th:utext="${selectedAccount.name}">Selected Account Name</h5>
+        <!--working　on-->
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <div class="card mb-4">
+                    <div class="card-header"> All Tasks</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                 th:each="task : ${tasks}" th:if="${tasks != null}">
+                                                <!-- Trigger Modal -->
+                                                <div class="bg-primary w-75 rounded mb-2"
+                                                     data-bs-target="#myModal"
+                                                     data-bs-toggle="modal"
+                                                     style="padding-top:75%"
+                                                     th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                    th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                    th:text="*{task.title}">Task title</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!--Daily tasks-->
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <div class="card mb-4">
+                    <div class="card-header"> Daily Tasks</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                 th:each="task : ${tasks}"
+                                                 th:if="${tasks != null && task.deadline < tomorrow}">
+                                                <!-- Trigger Modal -->
+                                                <div class="bg-primary w-75 rounded mb-2"
+                                                     data-bs-target="#myModal"
+                                                     data-bs-toggle="modal"
+                                                     style="padding-top:75%"
+                                                     th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                    th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                    th:text="${task.title}">Task title</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Weekly tasks-->
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <div class="card mb-4">
+                    <div class="card-header"> Weekly Tasks</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                 th:each="task : ${tasks}"
+                                                 th:if="${tasks != null && task.deadline <= nextSaturday}">
+                                                <!-- Trigger Modal -->
+                                                <div class="bg-primary w-75 rounded mb-2"
+                                                     data-bs-target="#myModal"
+                                                     data-bs-toggle="modal"
+                                                     style="padding-top:75%"
+                                                     th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                    th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                    th:text="${task.title}">Task title</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Monthly tasks-->
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <div class="card mb-4">
+                    <div class="card-header"> Monthly Tasks</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                 th:each="task : ${tasks}"
+                                                 th:if="${tasks != null && task.deadline <= endOfMonth}">
+                                                <!-- Trigger Modal -->
+                                                <div class="bg-primary w-75 rounded mb-2"
+                                                     data-bs-target="#myModal"
+                                                     data-bs-toggle="modal"
+                                                     style="padding-top:75%"
+                                                     th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                    th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                    th:text="${task.title}">Task title</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-                                 
+</div>
+
 <!-- task Modal show -->
 <div th:each="task : ${tasks}">
     <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
          tabindex="-1" th:attr="id='myModal-__${task.id}__'">
         <div class="modal-dialog">
             <div class="modal-content" th:object="${task}">
-              
-
-<form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__)}"
-    th:method="post">
-  <div class="modal-header">
-      <h5 class="modal-title" id="taskModalLabel">Task</h5>
-      <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-              type="button"></button>
-  </div>
-  <div class="modal-body">
-      <div class="d-flex custom-align">
-          <p class="left">Title</p>
-          <p class="center" th:field="*{title}" th:text="*{title}"></p>
-      </div>
-      <input name="taskId" th:field="*{id}" th:value="*{id}"
-             type="hidden"/>
-      <div class="d-flex custom-align">
-          <label class="left" for="account">Worker</label>
-          <select id="account" name="account" th:field="*{account}">
-              <option th:each="account : ${accounts}"
-                      th:selected="${account.id == task.account?.id}"
-                      th:text="${account.name}"
-                      th:value="${account.id}">
-              </option>
-          </select>
-      </div>
-      <div class="d-flex custom-align">
-          <p class="left">Contents</p>
-          <p class="center" th:field="*{contents}"
-             th:text="*{contents}"></p>
-      </div>
-      <div class="d-flex custom-align">
-          <p class="left">Deadline</p>
-          <p class="center" th:field="*{deadline}"
-             th:text="*{deadline}"></p>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-              Close
-          </button>
-          <button class="btn btn-primary" type="submit">Save changes</button>
-      </div>
-  </div>
-</form>
-
-              
+                <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__)}"
+        th:method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="taskModalLabel">Task</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                              type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="d-flex custom-align">
+                                <p class="left">Title</p>
+                                <p class="center" th:field="*{title}" th:text="*{title}"></p>
+                            </div>
+                        <input name="taskId" th:field="*{id}" th:value="*{id}"
+                             type="hidden"/>
+                        <div class="d-flex custom-align">
+                            <label class="left" for="account">Worker</label>
+                            <select id="account" name="account" th:field="*{account}">
+                                <option th:each="account : ${accounts}"
+                                      th:selected="${account.id == task.account?.id}"
+                                      th:text="${account.name}"
+                                      th:value="${account.id}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="d-flex custom-align">
+                            <p class="left">Contents</p>
+                            <p class="center" th:field="*{contents}"
+                             th:text="*{contents}"></p>
+                        </div>
+                        <div class="d-flex custom-align">
+                            <p class="left">Deadline</p>
+                            <p class="center" th:field="*{deadline}"
+                             th:text="*{deadline}"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                              Close
+                            </button>
+                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 
     <!-- /.row-->
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-header">User Info</div>
-                    <!-- /.row-->
-                    <div class="table-responsive">
-                        <table class="table border mb-0">
-                            <thead class="table-light fw-semibold">
-                            <tr class="align-middle">
-                                <th class="text-center">
-                                    <svg class="icon">
-                                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-people"></use>
-                                    </svg>
-                                </th>
-                                <th>User</th>
-                                <th class="text-center">Number of Tasks</th>
-                                <th class="text-center">Work on</th>
-                                <th class="text-center">Reaction</th>
-                                <th>Activity</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr class="align-middle" th:each="account : ${accounts}">
-                                <td class="text-center">
-<!--                                    <div class="avatar avatar-md">-->
-<!--                                        <form method="post" th:action="@{management.html(id=__${account.id}__)}">-->
-<!--                                            <input name="account-table-item" type="hidden" value="warning"/>-->
-<!--                                            <button type="submit"></button>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-                                    <div class="avatar avatar-md">
-                                        <form method="post" th:action="@{management.html(id=__${account.id}__)}">
-                                            <input name="account-table-item" type="hidden" value="warning"/>
-                                            <button type="submit" style= "background-color: #00FFFF; width: 100px; height: 30px; border-radius: 15px; border: none;">Show Tasks</button>
-                                        </form>
-                                    </div>
-
-                                </td>
-
-
-
-
-
-                                        <td>
-                                            <div class="small text-medium-emphasis">Last login</div>
-                                            <div class="fw-semibold">10 sec ago</div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button aria-expanded="false" aria-haspopup="true"
-                                                        class="btn btn-transparent p-0" data-coreui-toggle="dropdown"
-                                                        type="button">
-                                                    <svg class="icon">
-                                                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                                                                                href="#">Info</a><a
-                                                        class="dropdown-item" href="#">Edit</a><a
-                                                        class="dropdown-item text-danger" href="#">Delete</a></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                                <!--                                        <td class="text-center" th:text="${account.busynessStatus}">-->
-                                <!--                                        </td>-->
-                                <td>
-                                  <!-- When busynessStatus is 0 -->
-                                    <div class="btn btn-primary rounded-pill"
-                                         th:if="${account.busynessStatus != null && account.busynessStatus == 0}">
-                                        Excellent
-                                    </div>
+            <div class="card-header">User Info</div>
+                <!-- /.row-->
+                <div class="table-responsive">
+                    <table class="table border mb-0">
+                        <thead class="table-light fw-semibold">
+                        <tr class="align-middle">
+                            <th class="text-center">
+                                <svg class="icon">
+                                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-people"></use>
+                                </svg>
+                            </th>
+                            <th>User</th>
+                            <th class="text-center">Number of Tasks</th>
+                            <th class="text-center">Work on</th>
+                            <th class="text-center">Reaction</th>
+                            <th>Activity</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="align-middle" th:each="account : ${accounts}">
+                            <td class="text-center">
+                                <div class="avatar avatar-md">
+                                    <form method="post" th:action="@{management.html(id=__${account.id}__)}">
+                                        <input name="account-table-item" type="hidden" value="warning"/>
+                                        <button type="submit" style= "background-color: #00FFFF; width: 100px; height: 30px; border-radius: 15px; border: none;">Show Tasks</button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="small text-medium-emphasis">Last login</div>
+                                <div class="fw-semibold">10 sec ago</div>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button aria-expanded="false" aria-haspopup="true"
+                                            class="btn btn-transparent p-0" data-coreui-toggle="dropdown"
+                                            type="button">
+                                        <svg class="icon">
+                                            <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
+                                                                                    href="#">Info</a><a
+                                            class="dropdown-item" href="#">Edit</a><a
+                                            class="dropdown-item text-danger" href="#">Delete</a></div>
+                                </div>
+                            </td>
+<!--                                        <td class="text-center" th:text="${account.busynessStatus}">-->
+<!--                                        </td>-->
+                            <td>
+                              <!-- When busynessStatus is 0 -->
+                                <div class="btn btn-primary rounded-pill"
+                                     th:if="${account.busynessStatus != null && account.busynessStatus == 0}">
+                                    Excellent
+                                </div>
 
 
-                                    <!-- When busynessStatus is 1 -->
-                                    <div class="btn btn-info rounded-pill"
-                                         th:if="${account.busynessStatus != null && account.busynessStatus == 1}">
-                                        Good
-                                    </div>
+                                <!-- When busynessStatus is 1 -->
+                                <div class="btn btn-info rounded-pill"
+                                     th:if="${account.busynessStatus != null && account.busynessStatus == 1}">
+                                    Good
+                                </div>
 
-                                    <!-- When busynessStatus is 2 -->
-                                    <div class="btn btn-success rounded-pill"
-                                         th:if="${account.busynessStatus != null && account.busynessStatus == 2}">
-                                        Fair
-                                    </div>
+                                <!-- When busynessStatus is 2 -->
+                                <div class="btn btn-success rounded-pill"
+                                     th:if="${account.busynessStatus != null && account.busynessStatus == 2}">
+                                    Fair
+                                </div>
 
-                                    <!-- When busynessStatus is 3 -->
-                                    <div class="btn btn-warning rounded-pill"
-                                         th:if="${account.busynessStatus != null && account.busynessStatus == 3}">
-                                        Poor
-                                    </div>
+                                <!-- When busynessStatus is 3 -->
+                                <div class="btn btn-warning rounded-pill"
+                                     th:if="${account.busynessStatus != null && account.busynessStatus == 3}">
+                                    Poor
+                                </div>
 
-                                    <!-- When busynessStatus is 4 -->
-                                    <div class="btn btn-danger rounded-pill"
-                                         th:if="${account.busynessStatus != null && account.busynessStatus == 4}">
-                                        Unacceptable
-                                    </div>
-                                </td>
-
-                                <td>
-
-                                    <div class="small text-medium-emphasis">Last login</div>
-                                    <p th:text="${account.lastLoginDate}"></p>
-
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button aria-expanded="false" aria-haspopup="true"
-                                                class="btn btn-transparent p-0"
-                                                data-coreui-toggle="dropdown"
-                                                type="button">
-                                            <svg class="icon">
-                                                <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end"><a
-                                                class="dropdown-item"
-                                                href="#">Info</a><a
-                                                class="dropdown-item" href="#">Edit</a><a
-                                                class="dropdown-item text-danger" href="#">Delete</a></div>
-                                    </div>
-                                </td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                                <!-- When busynessStatus is 4 -->
+                                <div class="btn btn-danger rounded-pill"
+                                     th:if="${account.busynessStatus != null && account.busynessStatus == 4}">
+                                    Unacceptable
+                                </div>
+                            </td>
+                            <td>
+                                <div class="small text-medium-emphasis">Last login</div>
+                                <p th:text="${account.lastLoginDate}"></p>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button aria-expanded="false" aria-haspopup="true"
+                                            class="btn btn-transparent p-0"
+                                            data-coreui-toggle="dropdown"
+                                            type="button">
+                                        <svg class="icon">
+                                            <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end"><a
+                                            class="dropdown-item"
+                                            href="#">Info</a><a
+                                            class="dropdown-item" href="#">Edit</a><a
+                                            class="dropdown-item text-danger" href="#">Delete</a></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- /.col-->
@@ -529,6 +497,7 @@
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
     </footer>
 </div>
+
 <!-- CoreUI and necessary plugins-->
 <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
 <script src="vendors/simplebar/js/simplebar.min.js"></script>
