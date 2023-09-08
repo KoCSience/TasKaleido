@@ -1,5 +1,6 @@
 package com.github.kocsience.controller
 
+import com.github.kocsience.domain.Account
 import com.github.kocsience.domain.Task
 import com.github.kocsience.service.AccountService
 import com.github.kocsience.service.TaskService
@@ -48,7 +49,6 @@ class TaskController(private val accountService: AccountService, private val tas
 
     @PostMapping("register.html")
     fun create(@RequestParam("from", required = false) from: String?, @ModelAttribute newTask: Task): String {
-        println("Task from form: $newTask")
         if (session.account == null) {
             return "redirect:/accounts/login.html?from='tasks/register.html'"
         }
@@ -56,6 +56,7 @@ class TaskController(private val accountService: AccountService, private val tas
         newTask.account = session.account!!
         taskService.save(newTask)
         session.account = accountService.find(session.account!!.id!!)
+        println("Task from form: $newTask")
 //        println("Task after save: $newTask")
 
         return if (from != null) {
@@ -74,7 +75,6 @@ class TaskController(private val accountService: AccountService, private val tas
         if (session.account == null) {
             return "redirect:/accounts/login.html?from='tasks/update.html'"
         }
-
         task.account = session.account!!
         println("update Task: $task , ${session.account}")
         taskService.save(task.copy(id = id)) // なんかcopyしてる
@@ -85,6 +85,19 @@ class TaskController(private val accountService: AccountService, private val tas
         }
     }
 
+    @PostMapping("worker update.html")
+    fun worker_update(@RequestParam("taskId") taskId: Int, @ModelAttribute ): String {
+        val task: Task? = taskService.find(taskId)
+        val newAccount: Account? = accountService.find(accountId)
+
+        if (task != null) {
+            task.account = newAccount
+            taskService.save(task.copy(id=taskId)) // タスクを保存
+        }
+
+        println("update Task: $task")
+        return "management.html"
+    }
 
     @GetMapping("task.html")
     fun show(@RequestParam("id", required = false) id: Int?, model: Model): String {

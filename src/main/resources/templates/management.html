@@ -210,46 +210,69 @@
                         <canvas class="chart" height="30" id="main-chart"></canvas>
                     </div>
                     <div class="row">
-                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">
-                            <!-- <div class="bg-primary w-75 rounded mb-2" style="padding-top:75%"></div>
-                              <h6>Task name</h6> -->
-                            <div class="bg-primary w-75 rounded mb-2" data-bs-target="#myModal" data-bs-toggle="modal"
-                                 style="padding-top:75%"></div>
-                            <h6 data-bs-target="#myModal" data-bs-toggle="modal">Task name</h6>
-                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
+                                            <!-- Trigger Modal -->
+                                            <div class="bg-primary w-75 rounded mb-2"
+                                                 data-bs-target="#myModal"
+                                                 data-bs-toggle="modal"
+                                                 style="padding-top:75%"
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                th:text="*{task.title}">Task title</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <!-- task Modal show -->
-                    <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
-                         tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="taskModalLabel" th:text="${task.title}"></h5>
-                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                            type="button"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="d-flex custom-align">
-                                        <p class="left">worker</p>
-                                        <p class="center" th:text="${task.account.name}"></p>
-                                    </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">タスクの内容</p>
-                                        <p class="center" th:text="${task.contents}"></p>
-                                    </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">deadline</p>
-                                        <p class="center" th:text="${task.deadline}"></p>
-                                    </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">status</p>
-                                        <p class="center">進捗状況</p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
-                                    </button>
-                                    <button class="btn btn-primary" type="button">Save changes</button>
+                    <div th:each="task : ${tasks}">
+                        <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
+                             tabindex="-1" th:attr="id='myModal-__${task.id}__'">
+                            <div class="modal-dialog">
+                                <div class="modal-content" th:object="${task}">
+                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__,accountId=__${accountId}__)}" th:method="post">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
+                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" name="taskId" th:value="${task.id}" />
+                                            <div class="d-flex custom-align">
+                                                <p class="left">worker</p>
+                                                <select name="accountId" id="worker-select">
+                                                    <option th:each="account : ${accounts}"
+                                                            th:value="${account.id}"
+                                                            th:text="${account.name}"
+                                                            th:selected="${account.id == task.account?.id}">
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex custom-align">
+                                                <p class="left">タスクの内容</p>
+                                                <p class="center" th:text="${task.contents}"></p>
+                                            </div>
+                                            <div class="d-flex custom-align">
+                                                <p class="left">deadline</p>
+                                                <p class="center" th:text="${task.deadline}"></p>
+                                            </div>
+                                            <div class="d-flex custom-align">
+                                                <p class="left">status</p>
+                                                <p class="center">進捗状況</p>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

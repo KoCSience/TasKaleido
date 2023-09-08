@@ -29,6 +29,7 @@ class ManagementController(private val accountService: AccountService, private v
     fun showManagement(model: Model): String {
         // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
+        model.addAttribute("tasks", taskService.findAll())
 
         model.addAttribute("task", taskService.vanillaTask(accountService.vanillaAccount())) // 誰のtaskなのか指定できるようにする
         return "management"
