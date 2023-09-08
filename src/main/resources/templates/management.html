@@ -179,123 +179,211 @@
         </div>
     </header>
 
+    <!--Task-->
     <div class="body flex-grow-1 px-3">
         <div class="container-lg">
-
             <div class="card mb-4">
+                <div class="card-header"> Tasks</div>
                 <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h4 class="card-title mb-0">Tasks</h4>
-                            <div class="small text-medium-emphasis">January - July 2022</div>
-                        </div>
-                        <div aria-label="Toolbar with buttons" class="btn-toolbar d-none d-md-block" role="toolbar">
-                            <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
-                                <input autocomplete="off" class="btn-check" id="option1" name="options" type="radio">
-                                <label class="btn btn-outline-secondary"> Day</label>
-                                <input autocomplete="off" checked="" class="btn-check" id="option2" name="options"
-                                       type="radio">
-                                <label class="btn btn-outline-secondary active"> Week</label>
-                                <input autocomplete="off" class="btn-check" id="option3" name="options" type="radio">
-                                <label class="btn btn-outline-secondary"> Month</label>
-                            </div>
-                            <button class="btn btn-primary" type="button">
-                                <svg class="icon">
-                                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-cloud-download"></use>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="c-chart-wrapper" style="height:30px;margin-top:40px;">
-                        <canvas class="chart" height="30" id="main-chart"></canvas>
-                    </div>
-                    <div class="row">
-                        <table>
-                            <tr>
-                                <td>
+                    <h5 style="margin: 0.2em 2em 1em;" th:if="${selectedAccount != null}"
+                        th:utext="${selectedAccount.name}">Selected Account Name</h5>
+                    <!--working　on-->
+                    <div class="body flex-grow-1 px-3">
+                        <div class="container-lg">
+                            <div class="card mb-4">
+                                <div class="card-header"> All Tasks</div>
+                                <div class="card-body">
                                     <div class="row">
-                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
-                                            <!-- Trigger Modal -->
-                                            <div class="bg-primary w-75 rounded mb-2"
-                                                 data-bs-target="#myModal"
-                                                 data-bs-toggle="modal"
-                                                 style="padding-top:75%"
-                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
-                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
-                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
-                                                th:text="*{task.title}">Task title</h6>
-                                        </div>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                             th:each="task : ${tasks}" th:if="${tasks != null}">
+                                                            <!-- Trigger Modal -->
+                                                            <div class="bg-primary w-75 rounded mb-2"
+                                                                 data-bs-target="#myModal"
+                                                                 data-bs-toggle="modal"
+                                                                 style="padding-top:75%"
+                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                                th:text="*{task.title}">Task title</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!-- task Modal show -->
-                    <div th:each="task : ${tasks}">
-                        <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
-                             tabindex="-1" th:attr="id='myModal-__${task.id}__'">
-                            <div class="modal-dialog">
-                                <div class="modal-content" th:object="${task}">
-                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__)}"
-                                          th:method="post">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="taskModalLabel">Task</h5>
-                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                                    type="button"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="d-flex custom-align">
-                                                <p class="left">Title</p>
-                                                <p class="center" th:field="*{title}" th:text="*{title}"></p>
-                                            </div>
-                                            <input name="taskId" th:field="*{id}" th:value="*{id}"
-                                                   type="hidden"/>
-                                            <div class="d-flex custom-align">
-                                                <label class="left" for="account">Worker</label>
-                                                <select id="account" name="account" th:field="*{account}">
-                                                    <option th:each="account : ${accounts}"
-                                                            th:selected="${account.id == task.account?.id}"
-                                                            th:text="${account.name}"
-                                                            th:value="${account.id}">
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="d-flex custom-align">
-                                                <p class="left">Contents</p>
-                                                <p class="center" th:field="*{contents}"
-                                                   th:text="*{contents}"></p>
-                                            </div>
-                                            <div class="d-flex custom-align">
-                                                <p class="left">Deadline</p>
-                                                <p class="center" th:field="*{deadline}"
-                                                   th:text="*{deadline}"></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
-                                                    Close
-                                                </button>
-                                                <button class="btn btn-primary" type="submit">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- end task Modal -->
-                    <div class="c-chart-wrapper" style="height:30px;margin-top:40px;">
-                        <canvas class="chart" height="30" id="main-chart1"></canvas>
+
+                    <!--Daily tasks-->
+                    <div class="body flex-grow-1 px-3">
+                        <div class="container-lg">
+                            <div class="card mb-4">
+                                <div class="card-header"> Daily Tasks</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                             th:each="task : ${tasks}"
+                                                             th:if="${tasks != null && task.deadline < tomorrow}">
+                                                            <!--                                            &lt;!&ndash; Trigger Modal -->
+                                                            <div class="bg-primary w-75 rounded mb-2"
+                                                                 data-bs-target="#myModal"
+                                                                 data-bs-toggle="modal"
+                                                                 style="padding-top:75%"
+                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                                th:text="${task.title}">Task title</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Weekly tasks-->
+                    <div class="body flex-grow-1 px-3">
+                        <div class="container-lg">
+                            <div class="card mb-4">
+                                <div class="card-header"> Weekly Tasks</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                             th:each="task : ${tasks}"
+                                                             th:if="${tasks != null && task.deadline <= nextSaturday}">
+                                                            <!-- Trigger Modal -->
+                                                            <div class="bg-primary w-75 rounded mb-2"
+                                                                 data-bs-target="#myModal"
+                                                                 data-bs-toggle="modal"
+                                                                 style="padding-top:75%"
+                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                                th:text="${task.title}">Task title</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Monthly tasks-->
+                    <div class="body flex-grow-1 px-3">
+                        <div class="container-lg">
+                            <div class="card mb-4">
+                                <div class="card-header"> Monthly Tasks</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
+                                                             th:each="task : ${tasks}"
+                                                             th:if="${tasks != null && task.deadline <= endOfMonth}">
+                                                            <!-- Trigger Modal -->
+                                                            <div class="bg-primary w-75 rounded mb-2"
+                                                                 data-bs-target="#myModal"
+                                                                 data-bs-toggle="modal"
+                                                                 style="padding-top:75%"
+                                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                            <h6 data-bs-target="#myModal" data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#myModal-__${task.id}__'"
+                                                                th:text="${task.title}">Task title</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- task Modal show -->
+            <div th:each="task : ${tasks}" th:if="${tasks != null}">
+                <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
+                     tabindex="-1" th:attr="id='myModal-__${task.id}__'">
+                    <div class="modal-dialog">
+                        <div class="modal-content" th:object="${task}">
+                            <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__)}"
+                                  th:method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="taskModalLabel">Task</h5>
+                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-flex custom-align">
+                                        <p class="left">Title</p>
+                                        <p class="center" th:field="*{title}" th:text="*{title}"></p>
+                                    </div>
+                                    <input name="taskId" th:field="*{id}" th:value="*{id}"
+                                           type="hidden"/>
+                                    <div class="d-flex custom-align">
+                                        <label class="left" for="account">Worker</label>
+                                        <select id="account" name="account" th:field="*{account}">
+                                            <option th:each="account : ${accounts}"
+                                                    th:selected="${account.id == task.account?.id}"
+                                                    th:text="${account.name}"
+                                                    th:value="${account.id}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex custom-align">
+                                        <p class="left">Deadline</p>
+                                        <p class="center" th:field="*{deadline}"
+                                           th:text="*{deadline}"></p>
+                                    </div>
+                                    <div class="d-flex custom-align">
+                                        <p class="left">Contents</p>
+                                        <p class="center" th:field="*{contents}"
+                                           th:text="*{contents}"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                                            Close
+                                        </button>
+                                        <button class="btn btn-primary" type="submit">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end task Modal -->
+
             <!-- /.row-->
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="card mb-4">
                         <div class="card-header">User Info</div>
                         <div class="card-body">
-
 
                             <!-- /.row--><br>
                             <div class="table-responsive">
@@ -316,18 +404,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     <tr class="align-middle" th:each="account : ${accounts}">
                                         <td class="text-center">
                                             <div class="avatar avatar-md">
-                                                <!--                                                アイコンがあった場所-->
+                                                <form method="post"
+                                                      th:action="@{management.html(id=__${account.id}__)}">
+                                                    <input name="account-table-item" type="hidden" value="warning"/>
+                                                    <button type="submit"></button>
+                                                </form>
                                             </div>
                                         </td>
-                                        <td th:text="${account.name}">
-                                            Subordinate Account Name
-                                        </td>
-                                        <td class="text-center" th:text="${account.tasks.size()}">
-                                            -
-                                        </td>
+
+                                        <td><a th:href="'/accounts/subordinate.html?id=__${account.id}__'"><p
+                                                th:text="${account.name}">Subordinate Account Name</p></a></td>
+                                        <td class="text-center" th:text="${account.tasks.size()}">-</td>
                                         <td>
                                             <div class="clearfix">
                                                 <div class="float-start">
