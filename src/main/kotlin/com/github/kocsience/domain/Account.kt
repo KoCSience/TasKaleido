@@ -1,6 +1,7 @@
 package com.github.kocsience.domain
 
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 //import org.springframework.data.annotation.*
 
@@ -31,6 +32,7 @@ data class Account(
     var email: String,
     var profile: String,
     var busynessStatus: Int? = null,
+    var lastLoginDate: String? = "yyyy/mm/dd hh:mm:ss",
     // 誕生日
     // 入社年月日
     @OneToMany(mappedBy = "account", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)

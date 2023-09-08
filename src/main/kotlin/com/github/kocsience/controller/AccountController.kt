@@ -148,6 +148,18 @@ class AccountController(private val accountService: AccountService, private val 
         }
         if (account.password == loginForm.password) {
             println("login successful")
+
+            val now = LocalDateTime.now()
+            val year = now.year
+            val month = now.monthValue
+            val day = now.dayOfMonth
+            val hour = now.hour
+            val minute = now.minute
+            val second = now.second
+
+            println(String.format("%d/%d/%d %02d:%02d:%02d", year, month, day, hour, minute, second))
+            account.lastLoginDate = String.format("%d/%d/%d %02d:%02d:%02d", year, month, day, hour, minute, second)
+            accountService.save(account.copy(id=account.id))
             session.account = account
 
             return if (from == null) "redirect:subordinate.html?id=${account.id}" else "/${from}"
