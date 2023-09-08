@@ -218,42 +218,41 @@
                             <h6 data-bs-target="#myModal" data-bs-toggle="modal">Task name</h6>
                         </div>
                     </div>
+                    
                     <!-- task Modal show -->
-                    <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
-                         tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="taskModalLabel" th:text="${task.title}"></h5>
-                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                            type="button"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="d-flex custom-align">
-                                        <p class="left">worker</p>
-                                        <p class="center" th:text="${task.account.name}"></p>
+                    <div th:each="task : ${tasks}">
+                        <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
+                             tabindex="-1" th:attr="id='myModal-__${task.id}__'">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"
+                                            id="taskModalLabel"><span style="color: #333333; ">Task</span></h5>
+                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                                     </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">タスクの内容</p>
-                                        <p class="center" th:text="${task.contents}"></p>
+                                    <table class="modal-body" th:object="${task}">
+                                        <tr class="d-flex custom-align">
+                                            <th class="left">Title</th>
+                                            <td class="center" th:text="*{title}">_TITLE</td>
+                                        </tr>
+                                        <tr class="d-flex custom-align">
+                                            <th class="left">Deadline</th>
+                                            <td class="center" th:text="*{deadline}">_DEADLINE</td>
+                                        </tr>
+                                        <tr class="d-flex custom-align">
+                                            <th class="left">Contents</th>
+                                            <td class="center" th:text="*{contents}">_CONTENTS</td>
+                                        </tr>
+                                    </table>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                        <button class="btn btn-primary" type="button">Save changes</button>
                                     </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">deadline</p>
-                                        <p class="center" th:text="${task.deadline}"></p>
-                                    </div>
-                                    <div class="d-flex custom-align">
-                                        <p class="left">status</p>
-                                        <p class="center">進捗状況</p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
-                                    </button>
-                                    <button class="btn btn-primary" type="button">Save changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- end task Modal -->
                     <div class="c-chart-wrapper" style="height:30px;margin-top:40px;">
                         <canvas class="chart" height="30" id="main-chart1"></canvas>
