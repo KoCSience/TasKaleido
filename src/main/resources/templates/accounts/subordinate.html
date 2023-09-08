@@ -38,6 +38,7 @@
     <link href="../css/modal-style.css" rel="stylesheet">
     <!-- Main styles for this application-->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/icon.css" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="../css/examples.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -409,11 +410,12 @@
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
                                              th:if="${task.deadline <= endOfMonth}">
                                             <!-- Trigger Modal -->
-                                            <div class="bg-primary w-75 rounded mb-2"
-                                                 data-bs-target="#myModal"
+                                            <div class="icon-bg2"
+                                            data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
                                                  style="padding-top:75%"
-                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"></div>
+                                                 th:attr="data-bs-target='#myModal-__${task.id}__'">
+                                            </div>
                                             <h6 data-bs-target="#myModal" data-bs-toggle="modal"
                                                 th:attr="data-bs-target='#myModal-__${task.id}__'"
                                                 th:text="${task.title}">Task title</h6>
