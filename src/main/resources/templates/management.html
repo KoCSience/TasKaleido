@@ -236,18 +236,23 @@
                              tabindex="-1" th:attr="id='myModal-__${task.id}__'">
                             <div class="modal-dialog">
                                 <div class="modal-content" th:object="${task}">
-                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__,accountId=__${accountId}__)}"
+                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__)}"
                                           th:method="post">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
+                                            <h5 class="modal-title" id="taskModalLabel">Task</h5>
                                             <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
                                                     type="button"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <input name="taskId" th:value="${task.id}" type="hidden"/>
                                             <div class="d-flex custom-align">
-                                                <p class="left">worker</p>
-                                                <select id="worker-select" name="accountId">
+                                                <p class="left">Title</p>
+                                                <p class="center" th:field="*{title}" th:text="*{title}"></p>
+                                            </div>
+                                            <input name="taskId" th:field="*{id}" th:value="*{id}"
+                                                   type="hidden"/>
+                                            <div class="d-flex custom-align">
+                                                <label class="left" for="account">Worker</label>
+                                                <select id="account" name="account" th:field="*{account}">
                                                     <option th:each="account : ${accounts}"
                                                             th:selected="${account.id == task.account?.id}"
                                                             th:text="${account.name}"
@@ -256,18 +261,15 @@
                                                 </select>
                                             </div>
                                             <div class="d-flex custom-align">
-                                                <p class="left">タスクの内容</p>
-                                                <p class="center" th:text="${task.contents}"></p>
+                                                <p class="left">Contents</p>
+                                                <p class="center" th:field="*{contents}"
+                                                   th:text="*{contents}"></p>
                                             </div>
                                             <div class="d-flex custom-align">
-                                                <p class="left">deadline</p>
-                                                <p class="center" th:text="${task.deadline}"></p>
+                                                <p class="left">Deadline</p>
+                                                <p class="center" th:field="*{deadline}"
+                                                   th:text="*{deadline}"></p>
                                             </div>
-                                            <div class="d-flex custom-align">
-                                                <p class="left">status</p>
-                                                <p class="center">進捗状況</p>
-                                            </div>
-
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
                                                     Close

@@ -1,6 +1,5 @@
 package com.github.kocsience.controller
 
-import com.github.kocsience.domain.Account
 import com.github.kocsience.domain.Task
 import com.github.kocsience.service.AccountService
 import com.github.kocsience.service.TaskService
@@ -85,19 +84,29 @@ class TaskController(private val accountService: AccountService, private val tas
         }
     }
 
-    @PostMapping("worker update.html")
-    fun worker_update(@RequestParam("taskId") taskId: Int): String {
+    @PostMapping("worker_update.html")
+    fun updateWorker(
+        @RequestParam("taskId") taskId: Int,
+        @RequestParam("from", required = false) from: String?,
+        @ModelAttribute taskForm: TaskForm
+    ): String {
         val task: Task? = taskService.find(taskId)
-        //val newAccount: Account? = accountService.find(accountId)
-
         if (task != null) {
-            task.account = newAccount
-            taskService.save(task.copy(id=taskId)) // タスクを保存
+            task.account = accountService.find(taskForm.account) // change account
+            taskService.save(task.copy(id = taskId)) // タスクを保存
         }
 
-        println("update Task: $task")
-        return "management.html"
+//        println("update Task: $task")
+        return if (from != null) {
+            "redirect:/$from"
+        } else {
+            "redirect:task.html?id=${taskId}"
+        }
     }
+
+    data class TaskForm(
+        val account: Int
+    )
 
     @GetMapping("task.html")
     fun show(@RequestParam("id", required = false) id: Int?, model: Model): String {

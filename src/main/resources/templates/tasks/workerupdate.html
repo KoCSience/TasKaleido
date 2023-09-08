@@ -6,11 +6,11 @@
 </head>
 <body>
 <h2>登録</h2>
-<form th:action="@{workerupdate.html}" th:method="put">
+<form th:action="@{worker_update.html}" th:method="post">
     <label for="title">taskID:</label>
     <input id="title" name="taskId" required type="number"><br>
 
-    <label for="title">taskID:</label>
+    <label for="account">accountID:</label>
     <input id="account" name="accountId" required type="number"><br>
 
     <button type="submit">登録</button>
