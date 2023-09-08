@@ -181,9 +181,7 @@
 
     <!--Task-->
     <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
-            <div class="card mb-4">
-                <div class="card-header"> Tasks</div>
+
                 <div class="card-body">
                     <h5 style="margin: 0.2em 2em 1em;" th:if="${selectedAccount != null}"
                         th:utext="${selectedAccount.name}">Selected Account Name</h5>
@@ -322,8 +320,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 
     <!-- task Modal show -->
@@ -364,9 +360,7 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">User Info</div>
-                <div class="card-body">
-
-                    <!-- /.row--><br>
+                    <!-- /.row-->
                     <div class="table-responsive">
                         <table class="table border mb-0">
                             <thead class="table-light fw-semibold">
@@ -388,13 +382,24 @@
 
                             <tr class="align-middle" th:each="account : ${accounts}">
                                 <td class="text-center">
+<!--                                    <div class="avatar avatar-md">-->
+<!--                                        <form method="post" th:action="@{management.html(id=__${account.id}__)}">-->
+<!--                                            <input name="account-table-item" type="hidden" value="warning"/>-->
+<!--                                            <button type="submit"></button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
                                     <div class="avatar avatar-md">
                                         <form method="post" th:action="@{management.html(id=__${account.id}__)}">
                                             <input name="account-table-item" type="hidden" value="warning"/>
-                                            <button type="submit"></button>
+                                            <button type="submit" style= "background-color: #00FFFF; width: 100px; height: 30px; border-radius: 15px; border: none;">Show Tasks</button>
                                         </form>
                                     </div>
+
                                 </td>
+
+
+
+
 
                                 <td><a th:href="'/accounts/subordinate.html?id=__${account.id}__'"><p
                                         th:text="${account.name}">Subordinate Account Name</p></a></td>
@@ -470,7 +475,6 @@
                         </table>
                     </div>
 
-                </div>
             </div>
         </div>
         <!-- /.col-->
