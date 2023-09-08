@@ -14,7 +14,7 @@ class AccountService(private val accountRepository: AccountRepository) {
     fun save(account: Account) = accountRepository.save(account)
 
     fun vanillaAccount(): Account {
-        return Account(0, "PASSWORD", "NAME", "EMAIL", "PROFILE")
+        return Account(0, "PASSWORD", "NAME", "EMAIL", "PROFILE", 1, "yyyy/mm/dd hh:mm:ss")
     }
 
     fun delete(id: Int) = accountRepository.deleteById(id)

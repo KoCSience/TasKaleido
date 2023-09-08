@@ -13,6 +13,7 @@
         <th>パスワード</th>
         <th>メールアドレス</th>
         <th>プロフィール</th>
+        <th>最終ログイン時刻</th>
     </tr>
     <tr th:each="account : ${accounts}">
         <td th:text="${account.id}"></td>
@@ -20,6 +21,7 @@
         <td th:text="${account.password}"></td>
         <td th:text="${account.email}"></td>
         <td th:text="${account.profile}"></td>
+        <td th:text="${account.lastLoginDate}"></td>
     </tr>
 </table>
 <a href="register.html">新規作成</a>
