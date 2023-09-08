@@ -44,19 +44,19 @@ class TopController(private val accountService: AccountService, private val task
         // ↓ 動かなかった
 //        val accountS = Account(0, "super", "super", "super@super", "super user")
 //        accountService.save(accountS)
-        val accountA = Account(1, "a", "a", "a@a", "a")
+        val accountA = Account(1, "a", "a", "a@a", "a", 1, "yyyy/mm/dd hh:mm:ss")
         accountService.save(accountA)
-        val accountB = Account(2, "b", "b", "b@b", "b", 3)
+        val accountB = Account(2, "b", "b", "b@b", "b", 3, "yyyy/mm/dd hh:mm:ss")
         accountService.save(accountB)
         println("Account: $accountA, $accountB")
         val taskA = Task(1, "a", "a", "2000/01/01", accountA)
         taskService.save(taskA)
-
         val taskB = Task(2, "b", "b", "2023/11/11", accountB)
         taskService.save(taskB)
         val task9 = Task(3, "9", "9", "2023/09/09", accountB)
-        taskService.save(task9)
+        taskService.save(Task(4, "10", "10", "2023/09/10", accountB))
+        taskService.save(Task(5, "来週のタスク", "来週のタスクです！", "2023/09/15", accountB))
         println("Task: $taskA, $taskB, $task9")
-        return "index"
+        return "redirect:/management.html"
     }
 }

@@ -23,7 +23,11 @@ data class Task(
 
     @ManyToOne
     var account: Account? = null
-)
+) {
+    override fun toString(): String {
+        return "Task(id=$id, title=$title, contents=$contents, deadline=$deadline, account=${if (account == null) "null" else "(${account!!.id}, ${account!!.name})"})"
+    }
+}
 
 /*
 @Embeddable

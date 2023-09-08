@@ -6,8 +6,8 @@
 
 /* モーダルボディのテキストスタイル */
 .modal-body p {
-    color: blue; /* この色は例です。必要に応じて変更してください */
-    font-size: 24px;
+    color: black; /* この色は例です。必要に応じて変更してください */
+    font-size: 36px;
 }
 
 /* 特定のテキストのみをターゲットにする場合 */
@@ -23,9 +23,20 @@
 
 .custom-align .left {
     /* 左の要素は変更なしで、デフォルトの左に配置 */
+    color: black;
+    font-size: 28px;
+	padding-left: 60px;
+    width: 250px; /* この値は、最も長い「left」のテキストに合わせて調整してください */
+    padding-right: 10px; /* 右側のスペースを追加 */
 }
 
 .custom-align .center {
-    margin-left: auto; /* 左側のスペースを自動で最大にし、残りの要素を右に押し出します */
-    margin-right: auto; /* 右側のスペースも自動で最大にして、要素を中央に保持します */
+    color: black;
+    font-size: 32px;
+    text-align: left;
+}
+
+.custom-align {
+    border-bottom: 1px solid #cccccc; /* 灰色の横線 */
+    padding-bottom: 10px; /* 下のスペースを少し追加して線との間に余白を作る */
 }
