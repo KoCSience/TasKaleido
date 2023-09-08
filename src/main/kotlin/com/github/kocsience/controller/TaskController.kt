@@ -54,9 +54,10 @@ class TaskController(private val accountService: AccountService, private val tas
         }
 
         newTask.account = session.account!!
+        println("Task before save: $newTask")
         taskService.save(newTask)
         session.account = accountService.find(session.account!!.id!!)
-//        println("Task after save: $newTask")
+        println("Task after save: $newTask")
 
         return if (from != null) {
             "redirect:/$from"
