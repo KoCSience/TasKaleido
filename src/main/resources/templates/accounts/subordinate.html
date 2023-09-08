@@ -311,7 +311,7 @@
                                     <div class="row">
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}">
                                             <!-- Trigger Modal -->
-                                            <div class="bg-primary w-75 rounded mb-2"
+                                            <div class="icon-bg"
                                                  data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
                                                  style="padding-top:75%"
@@ -344,7 +344,7 @@
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
                                              th:if="${task.deadline < tomorrow}">
                                             <!--                                            &lt;!&ndash; Trigger Modal -->
-                                            <div class="bg-primary w-75 rounded mb-2"
+                                            <div class="icon-bg"
                                                  data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
                                                  style="padding-top:75%"
@@ -377,7 +377,7 @@
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
                                              th:if="${task.deadline <= nextSaturday}">
                                             <!-- Trigger Modal -->
-                                            <div class="bg-primary w-75 rounded mb-2"
+                                            <div class="icon-bg"
                                                  data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
                                                  style="padding-top:75%"
@@ -410,7 +410,7 @@
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
                                              th:if="${task.deadline <= endOfMonth}">
                                             <!-- Trigger Modal -->
-                                            <div class="icon-bg2"
+                                            <div class="icon-bg"
                                             data-bs-target="#myModal"
                                                  data-bs-toggle="modal"
                                                  style="padding-top:75%"
