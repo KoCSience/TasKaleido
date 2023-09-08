@@ -86,9 +86,9 @@ class TaskController(private val accountService: AccountService, private val tas
     }
 
     @PostMapping("worker update.html")
-    fun worker_update(@RequestParam("taskId") taskId: Int, @ModelAttribute ): String {
+    fun worker_update(@RequestParam("taskId") taskId: Int): String {
         val task: Task? = taskService.find(taskId)
-        val newAccount: Account? = accountService.find(accountId)
+        //val newAccount: Account? = accountService.find(accountId)
 
         if (task != null) {
             task.account = newAccount
