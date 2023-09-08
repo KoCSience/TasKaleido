@@ -55,8 +55,9 @@ class TopController(private val accountService: AccountService, private val task
         val taskB = Task(2, "b", "b", "2023/11/11", accountB)
         taskService.save(taskB)
         val task9 = Task(3, "9", "9", "2023/09/09", accountB)
-        taskService.save(task9)
+        taskService.save(Task(4, "10", "10", "2023/09/10", accountB))
+        taskService.save(Task(5, "来週のタスク", "来週のタスクです！", "2023/09/15", accountB))
         println("Task: $taskA, $taskB, $task9")
-        return "index"
+        return "redirect:/management.html"
     }
 }
