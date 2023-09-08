@@ -30,9 +30,7 @@ class ManagementController(private val accountService: AccountService, private v
 
     @GetMapping
     fun showManagement(@RequestParam("id", required = false) id: Int?, model: Model): String {
-        // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
-        model.addAttribute("tasks", taskService.findAll())
 
         val account = if (id != null) accountService.find(id) else null
         model.addAttribute("selectedAccount", account)
