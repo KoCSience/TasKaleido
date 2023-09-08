@@ -48,7 +48,6 @@ class TaskController(private val accountService: AccountService, private val tas
 
     @PostMapping("register.html")
     fun create(@RequestParam("from", required = false) from: String?, @ModelAttribute newTask: Task): String {
-        println("Task from form: $newTask")
         if (session.account == null) {
             return "redirect:/accounts/login.html?from='tasks/register.html'"
         }
@@ -75,7 +74,6 @@ class TaskController(private val accountService: AccountService, private val tas
         if (session.account == null) {
             return "redirect:/accounts/login.html?from='tasks/update.html'"
         }
-
         task.account = session.account!!
         println("update Task: $task , ${session.account}")
         taskService.save(task.copy(id = id)) // なんかcopyしてる
@@ -86,6 +84,29 @@ class TaskController(private val accountService: AccountService, private val tas
         }
     }
 
+    @PostMapping("worker_update.html")
+    fun updateWorker(
+        @RequestParam("taskId") taskId: Int,
+        @RequestParam("from", required = false) from: String?,
+        @ModelAttribute taskForm: TaskForm
+    ): String {
+        val task: Task? = taskService.find(taskId)
+        if (task != null) {
+            task.account = accountService.find(taskForm.account) // change account
+            taskService.save(task.copy(id = taskId)) // タスクを保存
+        }
+
+//        println("update Task: $task")
+        return if (from != null) {
+            "redirect:/$from"
+        } else {
+            "redirect:task.html?id=${taskId}"
+        }
+    }
+
+    data class TaskForm(
+        val account: Int
+    )
 
     @GetMapping("task.html")
     fun show(@RequestParam("id", required = false) id: Int?, model: Model): String {
