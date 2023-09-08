@@ -236,20 +236,22 @@
                              tabindex="-1" th:attr="id='myModal-__${task.id}__'">
                             <div class="modal-dialog">
                                 <div class="modal-content" th:object="${task}">
-                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__,accountId=__${accountId}__)}" th:method="post">
+                                    <form th:action="@{/tasks/worker_update.html(from=management.html,taskId=__${task.id}__,accountId=__${accountId}__)}"
+                                          th:method="post">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="taskModalLabel">タスクの名前</h5>
-                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                                    type="button"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <input type="hidden" name="taskId" th:value="${task.id}" />
+                                            <input name="taskId" th:value="${task.id}" type="hidden"/>
                                             <div class="d-flex custom-align">
                                                 <p class="left">worker</p>
-                                                <select name="accountId" id="worker-select">
+                                                <select id="worker-select" name="accountId">
                                                     <option th:each="account : ${accounts}"
-                                                            th:value="${account.id}"
+                                                            th:selected="${account.id == task.account?.id}"
                                                             th:text="${account.name}"
-                                                            th:selected="${account.id == task.account?.id}">
+                                                            th:value="${account.id}">
                                                     </option>
                                                 </select>
                                             </div>
@@ -267,7 +269,8 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">
+                                                    Close
                                                 </button>
                                                 <button class="btn btn-primary" type="submit">Save changes</button>
                                             </div>
@@ -282,28 +285,6 @@
                         <canvas class="chart" height="30" id="main-chart1"></canvas>
                     </div>
                 </div>
-                <!--                無駄なやつ消した-->
-                <!--                <div class="card-footer">-->
-                <!--                    <div class="row row-cols-1 row-cols-md-5 text-center">-->
-                <!--                        <div class="col mb-sm-2 mb-0">-->
-                <!--                            <div class="text-medium-emphasis">Visits</div>-->
-                <!--                            <div class="fw-semibold">29.703 Users (40%)</div>-->
-                <!--                            <div class="progress progress-thin mt-2">-->
-                <!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"-->
-                <!--                                     class="progress-bar bg-success" role="progressbar" style="width: 40%"></div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                        <div class="col mb-sm-2 mb-0">-->
-                <!--                            <div class="text-medium-emphasis">Unique</div>-->
-                <!--                            <div class="fw-semibold">24.093 Users (20%)</div>-->
-                <!--                            <div class="progress progress-thin mt-2">-->
-                <!--                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="20"-->
-                <!--                                     class="progress-bar bg-info" role="progressbar" style="width: 20%"></div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                ここまで(見栄え的にdivの枠組みだけ残した)-->
             </div>
             <!-- /.row-->
             <div class="row">
@@ -408,207 +389,6 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!--                        <tr class="align-middle">-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/2.jpg" alt="user@email.com"><span class="avatar-status bg-danger"></span></div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div>Avram Tarasios</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-br"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="clearfix">-->
-                                    <!--                              <div class="float-start">-->
-                                    <!--                                <div class="fw-semibold">task</div>-->
-                                    <!--                              </div>-->
-                                    <!--                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-cc-visa"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="small text-medium-emphasis">Last login</div>-->
-                                    <!--                            <div class="fw-semibold">5 minutes ago</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="dropdown">-->
-                                    <!--                              <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                    <!--                                <svg class="icon">-->
-                                    <!--                                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>-->
-                                    <!--                                </svg>-->
-                                    <!--                              </button>-->
-                                    <!--                              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                        </tr>-->
-                                    <!--                        <tr class="align-middle">-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/3.jpg" alt="user@email.com"><span class="avatar-status bg-warning"></span></div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div>Quintin Ed</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-in"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="clearfix">-->
-                                    <!--                              <div class="float-start">-->
-                                    <!--                                <div class="fw-semibold">task</div>-->
-                                    <!--                              </div>-->
-                                    <!--                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-cc-stripe"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="small text-medium-emphasis">Last login</div>-->
-                                    <!--                            <div class="fw-semibold">1 hour ago</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="dropdown">-->
-                                    <!--                              <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                    <!--                                <svg class="icon">-->
-                                    <!--                                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>-->
-                                    <!--                                </svg>-->
-                                    <!--                              </button>-->
-                                    <!--                              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                        </tr>-->
-                                    <!--                        <tr class="align-middle">-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="avatar-status bg-secondary"></span></div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div>Enéas Kwadwo</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-fr"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="clearfix">-->
-                                    <!--                              <div class="float-start">-->
-                                    <!--                                <div class="fw-semibold">task</div>-->
-                                    <!--                              </div>-->
-                                    <!--                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-cc-paypal"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="small text-medium-emphasis">Last login</div>-->
-                                    <!--                            <div class="fw-semibold">Last month</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="dropdown">-->
-                                    <!--                              <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                    <!--                                <svg class="icon">-->
-                                    <!--                                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>-->
-                                    <!--                                </svg>-->
-                                    <!--                              </button>-->
-                                    <!--                              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                        </tr>-->
-                                    <!--                        <tr class="align-middle">-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div>Agapetus Tadeáš</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-es"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="clearfix">-->
-                                    <!--                              <div class="float-start">-->
-                                    <!--                                <div class="fw-semibold">task</div>-->
-                                    <!--                              </div>-->
-                                    <!--                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-cc-apple-pay"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="small text-medium-emphasis">Last login</div>-->
-                                    <!--                            <div class="fw-semibold">Last week</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="dropdown dropup">-->
-                                    <!--                              <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                    <!--                                <svg class="icon">-->
-                                    <!--                                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>-->
-                                    <!--                                </svg>-->
-                                    <!--                              </button>-->
-                                    <!--                              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                        </tr>-->
-                                    <!--                        <tr class="align-middle">-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="avatar-status bg-danger"></span></div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div>Friderik Dávid</div>-->
-                                    <!--                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-pl"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="clearfix">-->
-                                    <!--                              <div class="float-start">-->
-                                    <!--                                <div class="fw-semibold">task</div>-->
-                                    <!--                              </div>-->
-                                    <!--                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td class="text-center">-->
-                                    <!--                            <svg class="icon icon-xl">-->
-                                    <!--                              <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-cc-amex"></use>-->
-                                    <!--                            </svg>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="small text-medium-emphasis">Last login</div>-->
-                                    <!--                            <div class="fw-semibold">Yesterday</div>-->
-                                    <!--                          </td>-->
-                                    <!--                          <td>-->
-                                    <!--                            <div class="dropdown dropup">-->
-                                    <!--                              <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                    <!--                                <svg class="icon">-->
-                                    <!--                                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-options"></use>-->
-                                    <!--                                </svg>-->
-                                    <!--                              </button>-->
-                                    <!--                              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>-->
-                                    <!--                            </div>-->
-                                    <!--                          </td>-->
-                                    <!--                        </tr>-->
                                     </tbody>
                                 </table>
                             </div>
