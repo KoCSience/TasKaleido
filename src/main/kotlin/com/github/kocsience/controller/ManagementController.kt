@@ -8,6 +8,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -31,11 +32,14 @@ class ManagementController(private val accountService: AccountService, private v
     }
 
     @GetMapping
-    fun showManagement(model: Model): String {
+    fun showManagement(@RequestParam("id", required = false) id: Int?, model: Model): String {
         // とりあえず仮でこれで , アカウントで分けていないけど！ｗ
         model.addAttribute("accounts", accountService.findAll())
 
-        model.addAttribute("task", taskService.vanillaTask(accountService.vanillaAccount())) // 誰のtaskなのか指定できるようにする
+        val account = if (id != null) accountService.find(id) else null
+        model.addAttribute("selectedAccount", account)
+        model.addAttribute("tasks", account?.tasks) // 誰のtaskなのか指定できるようにする
+
         val current = LocalDateTime.now()
         val nextSaturday: LocalDateTime = if (current.dayOfWeek == DayOfWeek.SATURDAY) {
             current
@@ -47,11 +51,12 @@ class ManagementController(private val accountService: AccountService, private v
         val lastDayOfMonth: LocalDate = currentYearMonth.atEndOfMonth()
         model.addAttribute("today", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
         model.addAttribute(
-                "tomorrow",
-                LocalDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
+            "tomorrow",
+            LocalDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
         )
         model.addAttribute("nextSaturday", nextSaturday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
         model.addAttribute("endOfMonth", lastDayOfMonth.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")))
+
         return "management"
     }
 }
