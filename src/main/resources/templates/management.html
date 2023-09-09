@@ -323,7 +323,7 @@
     </div>
 
     <!-- task Modal show -->
-    <div th:each="task : ${tasks}" th:if="${tasks != null}">
+    <div th:each="task : ${tasks}">
         <div aria-hidden="true" aria-labelledby="taskModalLabel" class="modal fade" id="myModal"
              tabindex="-1" th:attr="id='myModal-__${task.id}__'">
             <div class="modal-dialog">

@@ -35,6 +35,7 @@ class ManagementController(private val accountService: AccountService, private v
         val account = if (id != null) accountService.find(id) else null
         model.addAttribute("selectedAccount", account)
         model.addAttribute("tasks", account?.tasks) // 誰のtaskなのか指定できるようにする
+        model.addAttribute("task", taskService.vanillaTask())
 
         val current = LocalDateTime.now()
         val nextSaturday: LocalDateTime = if (current.dayOfWeek == DayOfWeek.SATURDAY) {
