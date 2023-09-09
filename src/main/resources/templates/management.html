@@ -232,7 +232,7 @@
                                             <div class="row">
                                                 <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
                                                      th:each="task : ${tasks}"
-                                                     th:if="${tasks != null && task.deadline < tomorrow}">
+                                                     th:if="${tasks != null && (task.deadline <= tomorrow || task.deadline == today)}">
                                                     <!-- Trigger Modal -->
                                                     <div class="icon-bg"
                                                          data-bs-target="#myModal"

@@ -342,7 +342,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
-                                             th:if="${task.deadline < tomorrow}">
+                                             th:if="${tasks != null && (task.deadline <= tomorrow || task.deadline == today)}">
                                             <!--                                            &lt;!&ndash; Trigger Modal -->
                                             <div class="icon-bg"
                                                  data-bs-target="#myModal"
@@ -375,7 +375,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
-                                             th:if="${task.deadline <= nextSaturday}">
+                                             th:if="${tasks != null && task.deadline <= nextSaturday}">
                                             <!-- Trigger Modal -->
                                             <div class="icon-bg"
                                                  data-bs-target="#myModal"
@@ -408,7 +408,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4" th:each="task : ${tasks}"
-                                             th:if="${task.deadline <= endOfMonth}">
+                                             th:if="${tasks != null && task.deadline <= endOfMonth}">
                                             <!-- Trigger Modal -->
                                             <div class="icon-bg"
                                             data-bs-target="#myModal"
