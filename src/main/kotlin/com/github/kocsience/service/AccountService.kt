@@ -24,7 +24,7 @@ class AccountService(private val accountRepository: AccountRepository) {
             return false
         }
         delete(account.id!!)
-        save(account)
+        save(account.copy(id=account.id))
         return true
     }
 }
