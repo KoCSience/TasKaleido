@@ -29,6 +29,7 @@
     <link href="assets/favicon/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
     <link href="assets/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
     <link href="assets/favicon/manifest.json" rel="manifest">
+    <link href="css/icon.css" rel="stylesheet">
     <meta content="#ffffff" name="msapplication-TileColor">
     <meta content="assets/favicon/ms-icon-144x144.png" name="msapplication-TileImage">
     <meta content="#ffffff" name="theme-color">
@@ -199,7 +200,7 @@
                                                 <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
                                                      th:each="task : ${tasks}" th:if="${tasks != null}">
                                                     <!-- Trigger Modal -->
-                                                    <div class="bg-primary w-75 rounded mb-2"
+                                                    <div class="icon-bg"
                                                          data-bs-target="#myModal"
                                                          data-bs-toggle="modal"
                                                          style="padding-top:75%"
@@ -232,8 +233,8 @@
                                                 <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4"
                                                      th:each="task : ${tasks}"
                                                      th:if="${tasks != null && task.deadline < tomorrow}">
-                                                    <!--                                            &lt;!&ndash; Trigger Modal -->
-                                                    <div class="bg-primary w-75 rounded mb-2"
+                                                    <!-- Trigger Modal -->
+                                                    <div class="icon-bg"
                                                          data-bs-target="#myModal"
                                                          data-bs-toggle="modal"
                                                          style="padding-top:75%"
@@ -267,7 +268,7 @@
                                                      th:each="task : ${tasks}"
                                                      th:if="${tasks != null && task.deadline <= nextSaturday}">
                                                     <!-- Trigger Modal -->
-                                                    <div class="bg-primary w-75 rounded mb-2"
+                                                    <div class="icon-bg"
                                                          data-bs-target="#myModal"
                                                          data-bs-toggle="modal"
                                                          style="padding-top:75%"
@@ -301,7 +302,7 @@
                                                      th:each="task : ${tasks}"
                                                      th:if="${tasks != null && task.deadline <= endOfMonth}">
                                                     <!-- Trigger Modal -->
-                                                    <div class="bg-primary w-75 rounded mb-2"
+                                                    <div class="icon-bg"
                                                          data-bs-target="#myModal"
                                                          data-bs-toggle="modal"
                                                          style="padding-top:75%"
